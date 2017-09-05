@@ -1,21 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Musilux</title>
-</head>
-<body>
-<h1 id="banner"> Welcome to</h1>
-<h2 id="musilux">M u s i l u x</h2>
-</body>
+    <head>
+        {% load static %}
+        <meta charset="UTF-8">
+        <title>Musilux</title>
+<!--        <link rel="stylesheet" type="text/css" href="{% static 'musilux/css/style.css' %}">#}-->
+    </head>
 
-<footer>
-<!--    put programmed by Aquatiger 2017 and the small image aquatiger -->
-    <p>Programmed by Aquatiger <img src="/musilux/static/musilux/img/aquatigermini.jpg"> 2017</p>
-</footer>
+    <body>
+
+    <h2 id="banner">Welcome to</h2>
+    <h1 id="musilux">M u s i l u x</h1>
+
+
+    <select id="song"> Rudolph</select><br>
+
+    <button type="submit" id="play">Play</button><br>
+
+    <footer>
+         <!--    put programmed by Aquatiger 2017 and the small image aquatiger -->
+        <p>Programmed by Aquatiger <img src="{% static 'musilux/img/aquatigermini.jpg' %}"
+                                        alt="Unavailable" height="30" width="40"> 2017</p>
+    </footer>
+
+        <!--jquery-->
+    <script
+        src="http://code.jquery.com/jquery-3.2.1.js"
+        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+        crossorigin="anonymous"></script>
+
+    <style>
+
+
+#banner {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    width: 95%;
+    height: 70px;
+    margin: 1%;
+    /*padding: 5%;*/
+}
+
+#musilux {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    height: 90px;
+    margin: 1%;
+    /*padding: 5%;*/
+}
+
+#song {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    height: 90px;
+    margin: 1%;
+    /*padding: 5%;*/
+}
+    </style>
+
+
+    </body>
 </html>
 
-<!-- TODO: get image to work  -->
 <!-- todo: not sure where to put this note, so here: midi starts numbering at 21, ends at 108 -->
 
 <!-- Not sure if I need this but here it is:
@@ -27,7 +88,7 @@
         b is a flat
         ds is double sharp
         df is double flat
-        if the B is B1 is that C flat 1 or C flat 2, likewise is C1 B sharp 1 or B sharp 2?
+        if the B is B1 is that C flat 1 or C flat 2, likewise is C1 B sharp 0 or B sharp 1?
 
         21
         <div id=”A0"></div>
