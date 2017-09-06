@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+{extends base.html}   includes this code in whatever template you desire
+{% block content %}   inserts this block of code
+<form action="" method ="POST">
+    {% csrf_token %}  insures security, prevents someone from reading and then sending on
+    {{ form.as_p }}   each input tag is separated into paragraphs using HTML paragraph tag
+    <button>SIGN UP</button>
+</form>
+{% endblock %}
+
+</body>
+</html>
