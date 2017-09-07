@@ -4,7 +4,7 @@
         {% load static %}
         <meta charset="UTF-8">
         <title>Musilux</title>
-<!--        <link rel="stylesheet" type="text/css" href="{% static 'musilux/css/style.css' %}">#}-->
+        <link rel="stylesheet" type="text/css" href="{% static 'musilux/css/style.css' %}">
     </head>
 
     <body>
@@ -12,10 +12,14 @@
     <h2 id="banner">Welcome to</h2>
     <h1 id="musilux">M u s i l u x</h1>
 
+    <!-- used div instead of select because the form didn't display properly -->
+    <div id="song">Rudolph</div><br>
 
-    <select id="song"> Rudolph</select><br>
+    <!-- play button to start the show -->
+    <p id="play">
+        <button type="submit">Play</button><br>
+    </p>
 
-    <button type="submit" id="play">Play</button><br>
 
     <footer>
          <!--    put programmed by Aquatiger 2017 and the small image aquatiger -->
@@ -31,46 +35,6 @@
 
     <style>
 
-
-#banner {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-    width: 95%;
-    height: 70px;
-    margin: 1%;
-    /*padding: 5%;*/
-}
-
-#musilux {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 95%;
-    height: 90px;
-    margin: 1%;
-    /*padding: 5%;*/
-}
-
-#song {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-footer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 95%;
-    height: 90px;
-    margin: 1%;
-    /*padding: 5%;*/
-}
     </style>
 
 

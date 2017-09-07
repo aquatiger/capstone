@@ -8,6 +8,7 @@ from django.shortcuts import render
 # Create your views here.
 # @login_required() used if you want login to be required
 def homepage(request):
+    squash = 'Hello World'
 
     context = {'type': squash}
     return render(request, 'base.html', context)

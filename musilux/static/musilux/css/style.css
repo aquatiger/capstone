@@ -21,6 +21,24 @@
     /*padding: 5%;*/
 }
 
+#song {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width 95%;
+    height: 50px;
+}
+
+#play {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center
+    width 15%;
+    height: 50px;
+}
+
 
 footer {
     display: flex;
