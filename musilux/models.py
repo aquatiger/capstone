@@ -7,6 +7,7 @@ class Song(models.Model):
 
     """
 
+    # TodO: figure out how to add to the database, add or connect the path of the song as well
     title = models.CharField(max_length=255)         # title or name of the song
     performer = models.CharField(max_length=255)     # the performer of this song
     composer = models.CharField(max_length=255)      # the composer of this song

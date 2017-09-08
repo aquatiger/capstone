@@ -12,8 +12,10 @@
     <body>
 
     <h2 id="banner">Welcome to</h2>
+    <!-- todO: randomize colors of the line below -->
     <h1 id="musilux">M u s i l u x</h1>
 
+    <!-- tODo: get lights connected to the midi file
     <!--  box container for lights and piano image -->
     <div id="container">
         <!--  box for lights -->
@@ -28,11 +30,18 @@
 
     <!-- used div instead of select because the form didn't display properly -->
     <!-- Hopefully a dropdown menu to choose songs to play -->
-    <div id="song">Rudolph</div><br>
+    <!-- toDo: need to add dropdown menu -->
+    <div id="songlist">
+        <select autofocus=on title="Please select song">
+            <option value="Rudolph the Red-Nosed Reindeer"</option>
+        </select>
+    </div><br>
 
+    <!-- TOdo: get the file from the database
     <!-- play button to start the show -->
     <div>
         <button type="submit"  id="play"><h2>Play</h2></button><br>
+        <!-- tOdo; need to connect onclick to the appropriate midifile -->
     </div>
 
 

@@ -123,12 +123,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' #default is dmtp instead of console, DO NOT USE
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_PASSWORD =os.environ['GMAIL_PASSWORD']
-EMAIL_USE_SSL = False
-EMAIL_USE_TLS = True
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' #default is dmtp instead of console, DO NOT USE
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_HOST_PASSWORD =os.environ['GMAIL_PASSWORD']
+# EMAIL_USE_SSL = False
+# EMAIL_USE_TLS = True
 
 TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'musilux/templates'),)
 
