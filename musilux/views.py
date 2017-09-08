@@ -1,4 +1,7 @@
+
+
 from django.shortcuts import render
+# from PIL import Image, ImageFilter
 
 # need accounts
 # for use in default of user creation

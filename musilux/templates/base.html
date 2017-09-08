@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+
         {% load static %}
         <meta charset="UTF-8">
         <title>Musilux</title>
         <link rel="stylesheet" type="text/css" href="{% static 'musilux/css/style.css' %}">
+
     </head>
 
     <body>
@@ -12,13 +14,26 @@
     <h2 id="banner">Welcome to</h2>
     <h1 id="musilux">M u s i l u x</h1>
 
+    <!--  box container for lights and piano image -->
+    <div id="container">
+        <!--  box for lights -->
+        <div id="lights">
+            <!--  I think I need here the 88 divisions <i>infra</i> -->
+        </div>
+        <!--  box for piano image -->
+        <div id="piano">
+            <!--   todo: I need to decide on a piano image -->
+        </div>
+    </div>
+
     <!-- used div instead of select because the form didn't display properly -->
+    <!-- Hopefully a dropdown menu to choose songs to play -->
     <div id="song">Rudolph</div><br>
 
     <!-- play button to start the show -->
-    <p id="play">
-        <button type="submit">Play</button><br>
-    </p>
+    <div>
+        <button type="submit"  id="play"><h2>Play</h2></button><br>
+    </div>
 
 
     <footer>
@@ -33,12 +48,8 @@
         integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
         crossorigin="anonymous"></script>
 
-    <style>
-
-    </style>
-
-
     </body>
+
 </html>
 
 <!-- todo: not sure where to put this note, so here: midi starts numbering at 21, ends at 108 -->

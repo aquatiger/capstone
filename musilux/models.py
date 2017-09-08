@@ -17,11 +17,11 @@ class Song(models.Model):
     comments = models.TextField()                    # uncategorizable remarks
 
     def __str__(self):
-        title = self.title()
-        performer = self.performer()
-        composer = self.composer()
-        year_c = self.year_c()
-        description = self.description()
-        created = self.created()
-        midifile = self.midifile()
-        comments = self.comments()
+        title = self.title
+        performer = self.performer
+        composer = self.composer
+        year_c = self.year_c
+        description = self.description
+        created = self.created
+        midifile = self.midifile
+        comments = self.comments
