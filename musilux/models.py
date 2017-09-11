@@ -11,7 +11,8 @@ class Song(models.Model):
     title = models.CharField(max_length=255)         # title or name of the song
     performer = models.CharField(max_length=255)     # the performer of this song
     composer = models.CharField(max_length=255)      # the composer of this song
-    year_c = models.CharField(max_length=4)          # year the song was composed
+    year_c = models.CharField(max_length=4, help_text='Year composed.')
+                                                     # year the song was composed
     description = models.TextField()                 # description also could be or could include history of song
     created = models.DateField(auto_now=True)        # day uploaded to the system
     midifile = models.FileField()                    # reference to midi file
@@ -26,3 +27,12 @@ class Song(models.Model):
         created = self.created
         midifile = self.midifile
         comments = self.comments
+        title = 'Rudolph'
+        performer = 'Temptations'
+        composer = 'Mozart'
+        year_c = '1789'
+        message = f'{title}, {performer}, {composer}, {year_c}'
+
+        return message
+
+

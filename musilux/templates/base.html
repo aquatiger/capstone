@@ -24,17 +24,22 @@
         </div>
         <!--  box for piano image -->
         <div id="piano">
-            <!--   todo: I need to decide on a piano image -->
+            <img src="">
         </div>
     </div>
 
     <!-- used div instead of select because the form didn't display properly -->
     <!-- Hopefully a dropdown menu to choose songs to play -->
     <!-- toDo: need to add dropdown menu -->
+    <!-- tODO: add songs to database and ensure they show up on list -->
     <div id="songlist">
-        <select autofocus=on title="Please select song">
-            <option value="Rudolph the Red-Nosed Reindeer"</option>
-        </select>
+        <div>
+            <select autofocus=on title="Please select song">
+                {% for song in songs %}
+                    <option value="{{ song.title }}"></option>
+                {% endfor %}
+            </select>
+        </div>
     </div><br>
 
     <!-- TOdo: get the file from the database

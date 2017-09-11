@@ -1,6 +1,7 @@
 
 
 from django.shortcuts import render
+from .models import Song
 # from PIL import Image, ImageFilter
 
 # need accounts
@@ -12,6 +13,6 @@ from django.shortcuts import render
 # @login_required() used if you want login to be required
 def homepage(request):
     squash = 'Hello World'
-
-    context = {'type': squash}
+    songs = Song.objects.all()
+    context = {'songs': songs}
     return render(request, 'base.html', context)
