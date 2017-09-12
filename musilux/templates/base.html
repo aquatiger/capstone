@@ -1,19 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+<head>
 
-        {% load static %}
-        <meta charset="UTF-8">
-        <title>Musilux</title>
-        <link rel="stylesheet" type="text/css" href="{% static 'musilux/css/style.css' %}">
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Musilux</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'musilux/css/style.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="{% static 'musilux/js/csrf.js' %}" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 
-    </head>
+    <script
+          src="http://code.jquery.com/jquery-3.2.1.js"
+          integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+          crossorigin="anonymous"></script>
+
+</head>
 
     <body>
-
+    <!--    {%  if messages %} -->
+    <ul class="messages">
+        {%  for message in messages %}
+        {%  if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}
+        {% endfor %}
+    </ul>
+    {% endif %}
+    -->
     <h2 id="banner">Welcome to</h2>
     <!-- todO: randomize colors of the line below -->
-    <h1 id="musilux">M u s i l u x</h1>
+    <h1 id="musilux"><strong>M u s i l u x<strong></h1>
 
     <!-- tODo: get lights connected to the midi file
     <!--  box container for lights and piano image -->
@@ -21,10 +38,11 @@
         <!--  box for lights -->
         <div id="lights">
             <!--  I think I need here the 88 divisions <i>infra</i> -->
+
         </div>
         <!--  box for piano image -->
         <div id="piano">
-            <img src="">
+           <img src="{% static 'musilux/img/piano.jpg' %}">
         </div>
     </div>
 
@@ -36,7 +54,7 @@
         <div>
             <select autofocus=on title="Please select song">
                 {% for song in songs %}
-                    <option value="{{ song.title }}"></option>
+                    <option>{{ song.midifile }}</option>
                 {% endfor %}
             </select>
         </div>
@@ -50,7 +68,7 @@
     </div>
 
 
-    <footer>
+    <footer id="bottom">
          <!--    put programmed by Aquatiger 2017 and the small image aquatiger -->
         <p>Programmed by Aquatiger <img src="{% static 'musilux/img/aquatigermini.jpg' %}"
                                         alt="Unavailable" height="30" width="40"> 2017</p>

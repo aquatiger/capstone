@@ -21,13 +21,14 @@ from django.contrib.auth.models import User
 from rest_framework import routers
 
 from musilux.views import homepage
-from musilux.viewsets import UserViewSet
+from musilux.viewsets import UserViewSet, SongViewSet
 from accounts.views import register
 from accounts.views import login
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
+router.register(r'songs', SongViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
