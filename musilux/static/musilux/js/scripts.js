@@ -34,13 +34,15 @@ function getRandomInt(min, max) {
 // select id=play when clicked to open  and play appropriate midifile
 // don't forget to use console.log to test
 $("#play").on('click', function(){
-    let choice = $("#songselect").val();
+    let choice = $('option:selected').attr('data-songpk');
     console.log(choice);
+    // name and functionalize the ajax call, name and functionalize the success part
+    // call those functions within this area
     $.ajax({
 
-        url: '127.0.0.1:8000/api/songs/',
+        url: `/api/songs/${choice}`,
         method: 'GET',
-        data: {'title': choice},
+        //data: {'title': choice},
         //Response Callback Below
         success: function (response) {
             console.log(response);
@@ -53,5 +55,5 @@ $("#play").on('click', function(){
     });
 });
 
-// jquiry to do
+// jquery to do
 // put HTML audio tag inside success for ajax call
