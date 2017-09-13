@@ -31,16 +31,19 @@
 #lights {
     display: flex;
     flex-direction: column;
-
     align-content: center;
     height: 50%;
     background-color: orange;
 }
 
+/*  todo: Get piano image centered properly on the page */
 #piano {
     display: flex;
     flex-direction: column;
     height: 50%;
+    border-color: lightgrey;
+    border-right: medium solid;
+    border-left: medium solid;
 }
 
 #songlist {
@@ -63,6 +66,7 @@
     height: 50px;
     margin-left: 42%;
     margin-right: 42%;
+    background: linear-gradient(to bottom,orange, white);
 }
 
 
@@ -73,5 +77,6 @@
     align-items: center;
     width: 95%;
     height: 90px;
-    margin: 1%;
+    position: fixed;
+    bottom: auto;
 }

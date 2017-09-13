@@ -48,13 +48,12 @@
 
     <!-- used div instead of select because the form didn't display properly -->
     <!-- Hopefully a dropdown menu to choose songs to play -->
-    <!-- toDo: need to add dropdown menu -->
     <!-- tODO: add songs to database and ensure they show up on list -->
     <div id="songlist">
         <div>
             <select autofocus=on title="Please select song">
                 {% for song in songs %}
-                    <option>{{ song.midifile }}</option>
+                    <option data-songpk="{{ song.pk }}">{{ song.title }}</option>
                 {% endfor %}
             </select>
         </div>
@@ -67,7 +66,7 @@
         <!-- tOdo; need to connect onclick to the appropriate midifile -->
     </div>
 
-
+    <!-- todo: get footer fixed at the bottom -->
     <footer id="bottom">
          <!--    put programmed by Aquatiger 2017 and the small image aquatiger -->
         <p>Programmed by Aquatiger <img src="{% static 'musilux/img/aquatigermini.jpg' %}"
