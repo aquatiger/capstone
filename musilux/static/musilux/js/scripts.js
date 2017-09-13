@@ -19,11 +19,39 @@ function getRandomInt(min, max) {
 //     }
 //     return color
 // }
-// TODO: color musilux in the home page
+// TODO: randomly color musilux in the home page
 
-function randomColor() {
-    let hexletter = 'Musilux'.split('');
-    return '#' + ('00000' + (Math.random() * 16777216 << 0).hexletter.join()
+// function randomColor() {
+//     let hexletter = 'Musilux'.split('');
+//     return '#' + ('00000' + (Math.random() * 16777216 << 0).hexletter.join()
+//
+// //    toString(16)).substr(-6); this was in the original from Stackoverflow replacing hexletter.join
+// }
+// $(#musilux).onopen(function(){
+//
+// });
 
-//    toString(16)).substr(-6); this was in the original from Stackoverflow replacing hexletter.join
-}
+// select id=play when clicked to open  and play appropriate midifile
+// don't forget to use console.log to test
+$("#play").on('click', function(){
+    let choice = $("#songselect").val();
+    console.log(choice);
+    $.ajax({
+
+        url: '127.0.0.1:8000/api/songs/',
+        method: 'GET',
+        data: {'title': choice},
+        //Response Callback Below
+        success: function (response) {
+            console.log(response);
+            console.log('This works');
+        },
+        error: function (err) {
+            console.log(err);
+            console.log('This does not work');
+        }
+    });
+});
+
+// jquiry to do
+// put HTML audio tag inside success for ajax call
