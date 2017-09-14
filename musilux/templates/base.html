@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'musilux/css/style.css' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 
+    <!-- loads jquery a csrf token, bootstrap (just in case, plan on using later)  -->
     <script
           src="http://code.jquery.com/jquery-3.2.1.js"
           integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
@@ -28,52 +29,52 @@
     </ul>
     {% endif %}
     -->
-    <h2 id="banner">Welcome to</h2>
-    <!-- todO: randomize colors of the line below -->
-    <h1 id="musilux"><strong>M u s i l u x</strong></h1>
 
-    <!-- tODo: get lights connected to the midi file
-    <!--  box container for lights and piano image -->
-    <div id="container">
-        <!--  box for lights -->
-        <div id="lights">
-            <!--  I think I need here the 88 divisions <i>infra</i> -->
 
+    <div id="mainbox">
+        <h2 id="banner">Welcome to</h2>
+        <!-- todO: randomize colors of the line below -->
+        <h1 id="musilux"><strong>M u s i l u x</strong></h1>
+
+        <!-- tODo: get lights connected to the midi file
+        <!--  box container for lights and piano image -->
+        <div id="container">
+            <!--  box for lights -->
+            <div id="lights">
+                <!--  I think I need here the 88 divisions <i>infra</i> -->
+
+            </div>
+            <!--  box for piano image -->
+            <div id="piano">
+               <img src="{% static 'musilux/img/piano.jpg' %}">
+            </div>
         </div>
-        <!--  box for piano image -->
-        <div id="piano">
-           <img src="{% static 'musilux/img/piano.jpg' %}">
-        </div>
-    </div>
 
-    <!-- used div instead of select because the form didn't display properly -->
-    <!-- Hopefully a dropdown menu to choose songs to play -->
-    <!-- tODO: add songs to database and ensure they show up on list -->
-    <div id="songlist">
+        <!-- used div instead of select because the form didn't display properly -->
+        <!-- tODO: add songs to database and ensure they show up on list -->
+        <!-- todo: website for bootstrap dropdown menus: https://jqueryui.com/selectmenu/#default -->
+        <!-- todo: and another: https://getbootstrap.com/docs/3.3/components/#dropdowns -->
+        <div id="songlist">
+                <select title="Please select song" autofocus id="songselect">
+                    <option>Please select song</option>
+                    {% for song in songs %}
+                        <option data-songpk="{{ song.pk }}">{{ song.title }}</option>
+                    {% endfor %}
+                </select>
+        </div>
+
+        <!-- TOdo: get the file from the database
+        <!-- play button to start the show -->
         <div>
-            <select autofocus="on" id="songselect">
-                <option>Please select song</option>
-                {% for song in songs %}
-                    <option data-songpk="{{ song.pk }}">{{ song.title }}</option>
-                {% endfor %}
-            </select>
+            <button id="play"><h2>Play</h2></button><br>
+            <!-- tOdo; need to connect onclick to the appropriate midifile -->
         </div>
-    </div><br>
 
-    <!-- TOdo: get the file from the database
-    <!-- play button to start the show -->
-    <div>
-        <button id="play"><h2>Play</h2></button><br>
-        <!-- tOdo; need to connect onclick to the appropriate midifile -->
-        <!-- audio tag format is <audio controls autoplay> -->
+        <footer id="bottom">
+            <p>Programmed by Aquatiger <img src="{% static 'musilux/img/aquatigermini.jpg' %}"
+                                            alt="Unavailable" height="30" width="40"> 2017</p>
+        </footer>
     </div>
-
-    <!-- todo: get footer fixed at the bottom -->
-    <footer id="bottom">
-         <!--    put programmed by Aquatiger 2017 and the small image aquatiger -->
-        <p>Programmed by Aquatiger <img src="{% static 'musilux/img/aquatigermini.jpg' %}"
-                                        alt="Unavailable" height="30" width="40"> 2017</p>
-    </footer>
 
     <script src="{% static 'musilux/js/scripts.js' %}" ></script>
 

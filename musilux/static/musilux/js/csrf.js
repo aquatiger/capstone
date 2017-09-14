@@ -1,3 +1,5 @@
+// used for cross-site request forgery
+
 
 // using jQuery
 function getCookie(name) {

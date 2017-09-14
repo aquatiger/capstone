@@ -1,39 +1,37 @@
 "use strict";
 
-function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+
+// get random color for each letter in the word Musilux for the home page
+function randomColor() {
+    let letters = '0123456789ABCDEF';
+    // hexletter for hexidecimal (the color) of the letter
+    let hexletter = 'Musilux'.split('');
+    let color = '#';
+    for (let i=0;i<6;i++) {
+        color += letters[Math.floor(math.random() * 16)];
+    }
+    let rejoin = hexletter.color.join();
+    return color
+}
+
+function setRandomColor() {
+    $("#musilux").css("font-color", randomColor());
+    $("#play").css("background-color", randomColor());
+}
+// TODO: randomly color musilux in the home page
+
+
+// todo: https://github.com/Tonejs/MidiConvert, website for midi parser
+
+function parseResponse(song){
+    let url = song.midifile;
+    let audio = $('<audio controls autoplay>');
+    let source = $('<source>', {'src': url});
+    audio.append(source);
 }
 
 
-// get random color for each letter in the word Musilux for the home page
-// function randomColor() {
-//     let hexletter = 'Musilux'.split('');
-//     let color = '#';
-//     for (let i=0;i<6;i++){
-//         // get random number between 0 and len of hexletter
-//         // use random number to get hexletter
-//         // concatenate to the color string
-//         let x = getRandomInt(0, hexletter.length);
-//         let hexlet = hexletter[x];
-//         color += hexletter;
-//     }
-//     return color
-// }
-// TODO: randomly color musilux in the home page
-
-// function randomColor() {
-//     let hexletter = 'Musilux'.split('');
-//     return '#' + ('00000' + (Math.random() * 16777216 << 0).hexletter.join()
-//
-// //    toString(16)).substr(-6); this was in the original from Stackoverflow replacing hexletter.join
-// }
-// $(#musilux).onopen(function(){
-//
-// });
-
-// select id=play when clicked to open  and play appropriate midifile
-// don't forget to use console.log to test
-$("#play").on('click', function(){
+function fetchSong(){
     let choice = $('option:selected').attr('data-songpk');
     console.log(choice);
     // name and functionalize the ajax call, name and functionalize the success part
@@ -47,13 +45,18 @@ $("#play").on('click', function(){
         success: function (response) {
             console.log(response);
             console.log('This works');
+            parseResponse(response);
         },
         error: function (err) {
             console.log(err);
             console.log('This does not work');
         }
     });
-});
+}
 
-// jquery to do
-// put HTML audio tag inside success for ajax call
+
+// select id=play when clicked to open  and play appropriate midifile
+// don't forget to use console.log to test
+$("#play").on('click', function(){
+    fetchSong();
+});

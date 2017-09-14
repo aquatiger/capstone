@@ -13,17 +13,17 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url, include
+from django.conf.urls import include
 from django.contrib import admin
 from django.conf.urls import url
 from django.contrib import admin
 from django.contrib.auth.models import User
 from rest_framework import routers
 
+from accounts.views import login
+from accounts.views import register
 from musilux.views import homepage
 from musilux.viewsets import UserViewSet, SongViewSet
-from accounts.views import register
-from accounts.views import login
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
@@ -31,11 +31,12 @@ router.register(r'users', UserViewSet)
 router.register(r'songs', SongViewSet)
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^home/', homepage, name='homepage'),
-    url(r'^register/', register, name='register'),
-    url(r'^login/', login, name='login'),
+    url(r'^admin/', admin.site.urls),              # administrative functions for apps
+    url(r'^home/', homepage, name='homepage'),     # homepage, the first the user sees
+    url(r'^register/', register, name='register'), # future use for registering users
+    url(r'^login/', login, name='login'),          # for user to login after registering
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^api/', include(router.urls)),
+                                                   # api authentication
+    url(r'^api/', include(router.urls)),           # application program interface
 ]
 

@@ -11,7 +11,7 @@ class Song(models.Model):
     title = models.CharField(max_length=255)         # title or name of the song
     performer = models.CharField(max_length=255)     # the performer of this song
     composer = models.CharField(max_length=255)      # the composer of this song
-    year_c = models.CharField(max_length=4, help_text='Year composed.')
+    year_c = models.CharField(max_length=4, help_text='Year composed')
                                                      # year the song was composed
     description = models.TextField()                 # description also could be or could include history of song
     created = models.DateField(auto_now=True)        # day uploaded to the system

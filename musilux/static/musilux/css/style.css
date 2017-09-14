@@ -1,4 +1,21 @@
+/* formats the body tag */
+body {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
 
+/* formats the mainbox that contains all the other boxes */
+#mainbox {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+
+/* formats the words "Welcome to*/
 #banner {
     display: flex;
     flex-direction: column;
@@ -9,6 +26,7 @@
     margin: 1%;
 }
 
+/* formats the word "Musiux */
 #musilux {
     display: flex;
     flex-direction: column;
@@ -19,6 +37,7 @@
     margin: 1%;
 }
 
+/* formats the box that has both lights and piano*/
 #container {
     display: flex;
     flex-direction: column;
@@ -28,24 +47,29 @@
     height: 20%;
 }
 
+/* formats the box with the 88 lights for the lightshow*/
+
 #lights {
     display: flex;
     flex-direction: column;
     align-content: center;
     height: 50%;
     background-color: orange;
+    border-radius: 15px 15px 0 0;
 }
 
-/*  todo: Get piano image centered properly on the page */
+/* formats the box with the piano image in it */
+/* todo: Get border to color properly or modify image to have proper border*/
 #piano {
     display: flex;
     flex-direction: column;
     height: 50%;
-    border-color: lightgrey;
+    border-color: yellow;
     border-right: medium solid;
     border-left: medium solid;
 }
 
+/* formats the box with the song selections in it */
 #songlist {
     display: flex;
     flex-direction: column;
@@ -53,23 +77,20 @@
     align-items: center;
     width: 95px;
     height: 100px;
-    margin-left: 44%;
 }
 
-
+/* formats the play button */
 #play {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 16%;
-    height: 50px;
-    margin-left: 42%;
-    margin-right: 42%;
+    width: 120%;
+    height: 60px;
     background: linear-gradient(to bottom,orange, white);
 }
 
-
+/* formats the footer */
 #bottom {
     display: flex;
     flex-direction: row;
@@ -77,6 +98,5 @@
     align-items: center;
     width: 95%;
     height: 90px;
-    position: fixed;
     bottom: auto;
 }
