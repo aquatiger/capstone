@@ -132,6 +132,9 @@ STATIC_URL = '/static/'
 
 TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'musilux/templates'),)
 
+# Media file settings.
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/musilux')
+
 
 # Django restframework from django-rest-framework.org
 REST_FRAMEWORK = {

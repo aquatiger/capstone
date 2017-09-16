@@ -7,7 +7,6 @@ class Song(models.Model):
 
     """
 
-    # TodO: add or connect the path of the song as well
     title = models.CharField(max_length=255)         # title or name of the song
     performer = models.CharField(max_length=255)     # the performer of this song
     composer = models.CharField(max_length=255)      # the composer of this song
@@ -15,7 +14,7 @@ class Song(models.Model):
                                                      # year the song was composed
     description = models.TextField()                 # description also could be or could include history of song
     created = models.DateField(auto_now=True)        # day uploaded to the system
-    midifile = models.FileField()                    # reference to midi file
+    midifile = models.FileField(upload_to='midifiles/') # reference to midi file
     comments = models.TextField()                    # uncategorizable remarks
 
     def __str__(self):

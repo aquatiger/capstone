@@ -34,7 +34,7 @@
     <div id="mainbox">
         <h2 id="banner">Welcome to</h2>
         <!-- todO: randomize colors of the line below -->
-        <h1 id="musilux"><strong>M u s i l u x</strong></h1>
+        <ul id="musilux"><!-- This is where Musilux goes --></ul>
 
         <!-- tODo: get lights connected to the midi file
         <!--  box container for lights and piano image -->
@@ -51,11 +51,9 @@
         </div>
 
         <!-- used div instead of select because the form didn't display properly -->
-        <!-- tODO: add songs to database and ensure they show up on list -->
-        <!-- todo: website for bootstrap dropdown menus: https://jqueryui.com/selectmenu/#default -->
-        <!-- todo: and another: https://getbootstrap.com/docs/3.3/components/#dropdowns -->
+        <!-- also bootstrap dropdown menu -->
         <div id="songlist">
-                <select title="Please select song" autofocus id="songselect">
+                <select autofocus class="btn btn-default dropdown-toggle" id="songselect">
                     <option>Please select song</option>
                     {% for song in songs %}
                         <option data-songpk="{{ song.pk }}">{{ song.title }}</option>
@@ -66,9 +64,25 @@
         <!-- TOdo: get the file from the database
         <!-- play button to start the show -->
         <div>
-            <button id="play"><h2>Play</h2></button><br>
+            <button id="play">Play</button><br>
             <!-- tOdo; need to connect onclick to the appropriate midifile -->
         </div>
+{#        <div id="choiceboxes"> <!-- Data for song after choice has been made -->#}
+{#        <div id="choiceinfo">#}
+{#              {% for song in songs %}#}
+{#                {{ song.performer }}<br>#}
+{#                {{ song.composer }}<br>#}
+{#                {{ song.year_c }}<br>#}
+{#                {{ song.description }}<br>#}
+{#              {%  endfor %}#}
+{#            </div>#}
+{#            <div> <!-- todo <img src="{% static 'musilux/img/' %}" --></div>#}
+{#            <div>#}
+{#              {% for song in songs %}#}
+{#                {{ song.comments }}<br>#}
+{#              {% endfor %}#}
+{#            </div>#}
+{#        </div> //-->#}
 
         <footer id="bottom">
             <p>Programmed by Aquatiger <img src="{% static 'musilux/img/aquatigermini.jpg' %}"
@@ -76,6 +90,7 @@
         </footer>
     </div>
 
+    <script src="{% static 'musilux/js/MidiConvert.js' %}" ></script>
     <script src="{% static 'musilux/js/scripts.js' %}" ></script>
 
     </body>

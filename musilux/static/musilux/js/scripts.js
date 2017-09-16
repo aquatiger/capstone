@@ -1,30 +1,46 @@
 "use strict";
 
 
-// get random color for each letter in the word Musilux for the home page
-function randomColor() {
-    let letters = '0123456789ABCDEF';
-    // hexletter for hexidecimal (the color) of the letter
-    let hexletter = 'Musilux'.split('');
-    let color = '#';
-    for (let i=0;i<6;i++) {
-        color += letters[Math.floor(math.random() * 16)];
-    }
-    let rejoin = hexletter.color.join();
-    return color
+function randomRGB() {
+    let r = Math.floor(Math.random() * 255);
+    let g = Math.floor(Math.random() * 255);
+    let b = Math.floor(Math.random() * 255);
+
+    return `rgb(${r}, ${g}, ${b})`
 }
 
-function setRandomColor() {
-    $("#musilux").css("font-color", randomColor());
-    $("#play").css("background-color", randomColor());
+function musiluxColor(){
+    let musilux = 'Musilux'.split('');
+    for (let i=0;i<musilux.length;i++){
+        let char = musilux[i];
+        let color = randomRGB();
+        let clrltr = $("<li>").text(char);
+        clrltr.css({'color': color, 'display': 'inline'});
+        $('#musilux').append(clrltr);
+    }
 }
-// TODO: randomly color musilux in the home page
+musiluxColor();
+
+function setRandomBackgroundColor(selector) {
+    $(selector).css(
+        'background',
+        `linear-gradient(to bottom, ${randomRGB()}, white)`
+    );
+}
+$(document).ready(function() {
+    setRandomBackgroundColor("#play");
+});
 
 
 // todo: https://github.com/Tonejs/MidiConvert, website for midi parser
 
 function parseResponse(song){
-    let url = song.midifile;
+    let url = song.midifile_url;
+
+    MidiConvert.load(url, function(midi) {
+       console.log(midi);
+    });
+
     let audio = $('<audio controls autoplay>');
     let source = $('<source>', {'src': url});
     audio.append(source);
@@ -34,10 +50,9 @@ function parseResponse(song){
 function fetchSong(){
     let choice = $('option:selected').attr('data-songpk');
     console.log(choice);
-    // name and functionalize the ajax call, name and functionalize the success part
+    // name and functionalize the ajax call
     // call those functions within this area
     $.ajax({
-
         url: `/api/songs/${choice}`,
         method: 'GET',
         //data: {'title': choice},

@@ -10,6 +10,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-content: space-between;
     align-items: center;
     height: 100%;
 }
@@ -23,18 +24,22 @@ body {
     align-items: center;
     width: 95%;
     height: 70px;
-    margin: 1%;
+    /*margin: 1%;*/
 }
 
-/* formats the word "Musiux */
+/* formats the word "Musilux */
 #musilux {
+    font-size: 500%;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 95%;
-    height: 90px;
-    margin: 1%;
+    /*margin: 1%;*/
+    padding: 0px;
+}
+
+#musilux > li {
+    margin: 0px 2px;
 }
 
 /* formats the box that has both lights and piano*/
@@ -48,13 +53,12 @@ body {
 }
 
 /* formats the box with the 88 lights for the lightshow*/
-
 #lights {
     display: flex;
     flex-direction: column;
     align-content: center;
     height: 50%;
-    background-color: orange;
+    background-color: purple;
     border-radius: 15px 15px 0 0;
 }
 
@@ -64,9 +68,14 @@ body {
     display: flex;
     flex-direction: column;
     height: 50%;
-    border-color: yellow;
-    border-right: medium solid;
-    border-left: medium solid;
+    /*border-color: yellow;*/
+    /*border-right: medium solid;*/
+    /*border-left: medium solid;*/
+}
+
+#piano > img {
+    border: 1px solid #777;
+    border-top: none;
 }
 
 /* formats the box with the song selections in it */
@@ -79,15 +88,28 @@ body {
     height: 100px;
 }
 
+#songselect {
+    background-color: white;
+}
+
 /* formats the play button */
 #play {
+    font-size: 250%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 120%;
     height: 60px;
-    background: linear-gradient(to bottom,orange, white);
+    /*background: linear-gradient(to bottom,orange, white);*/
+}
+
+/* formats the three boxes containing information about the song chosen */
+#choiceboxes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 /* formats the footer */
