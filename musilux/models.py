@@ -14,14 +14,14 @@ class Song(models.Model):
                                                      # year the song was composed
     description = models.TextField()                 # description also could be or could include history of song
     created = models.DateField(auto_now=True)        # day uploaded to the system
-    midifile = models.FileField(upload_to='midifiles/') # reference to midi file
+    last_accessed = models.DateField(auto_now=True)  # last time the file was accessed
+    midifile = models.FileField(upload_to='midifiles/')  # reference to midi file
     comments = models.TextField()                    # uncategorizable remarks
 
     def __str__(self):
+        # can I do Songs.object.all() instead of listing all the fields?
         message = f"""
         {self.title}, {self.performer}, {self.composer}, {self.year_c}, {self.description}, 
         {self.created}, {self.midifile}, {self.comments}"""
 
         return message
-
-

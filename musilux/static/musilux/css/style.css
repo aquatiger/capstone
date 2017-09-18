@@ -15,7 +15,6 @@ body {
     height: 100%;
 }
 
-
 /* formats the words "Welcome to*/
 #banner {
     display: flex;
@@ -24,7 +23,6 @@ body {
     align-items: center;
     width: 95%;
     height: 70px;
-    /*margin: 1%;*/
 }
 
 /* formats the word "Musilux */
@@ -34,12 +32,11 @@ body {
     justify-content: center;
     align-items: center;
     width: 95%;
-    /*margin: 1%;*/
-    padding: 0px;
+    padding: 0;
 }
 
 #musilux > li {
-    margin: 0px 2px;
+    margin: 0 3px;
 }
 
 /* formats the box that has both lights and piano*/
@@ -63,16 +60,13 @@ body {
 }
 
 /* formats the box with the piano image in it */
-/* todo: Get border to color properly or modify image to have proper border*/
 #piano {
     display: flex;
     flex-direction: column;
     height: 50%;
-    /*border-color: yellow;*/
-    /*border-right: medium solid;*/
-    /*border-left: medium solid;*/
 }
 
+/* puts a border around the piano image */
 #piano > img {
     border: 1px solid #777;
     border-top: none;
@@ -108,7 +102,7 @@ body {
 #choiceboxes {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 
