@@ -42,12 +42,15 @@ function parseResponse(song) {
     let url = song.midifile_url;
 
     MidiConvert.load(url, function(midi) {
+
        console.log(midi);
     });
 
     let audio = $('<audio controls autoplay>');
     let source = $('<source>', {'src': url});
     audio.append(source);
+    $('body').append(audio)
+    audio.play()
 }
 
 // function to get the chosen song

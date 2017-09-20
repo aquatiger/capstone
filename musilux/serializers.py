@@ -16,7 +16,10 @@ class SongSerializer(serializers.ModelSerializer):
     midifile_url = serializers.SerializerMethodField()
 
     def get_midifile_url(self, obj):
-        return STATIC_URL + 'musilux/' + obj.midifile.url
+        print(STATIC_URL)
+        print(obj.midifile.url)
+        #return STATIC_URL + 'musilux/' + obj.midifile.url
+        return '/static/musilux/midifiles/Rudolph.mid'
 
     class Meta:
         model = Song
