@@ -58,7 +58,9 @@ ROOT_URLCONF = 'Capstone.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'musilux/templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -122,6 +124,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILE_DIRS = [
+    os.path.join(BASE_DIR, 'musilux/static')
+]
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' #default is dmtp instead of console, DO NOT USE
 # EMAIL_HOST = 'smtp.gmail.com'
@@ -130,10 +135,10 @@ STATIC_URL = '/static/'
 # EMAIL_USE_SSL = False
 # EMAIL_USE_TLS = True
 
-TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'musilux/templates'),)
 
 # Media file settings.
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/musilux')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/musilux')
 
 
 # Django restframework from django-rest-framework.org
@@ -144,5 +149,3 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny'
     ]
 }
-
-MEDIA_URL = '/media/'

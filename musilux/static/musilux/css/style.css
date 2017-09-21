@@ -52,24 +52,39 @@ body {
 /* formats the box with the 88 lights for the lightshow*/
 #lights {
     display: flex;
-    flex-direction: column;
-    align-content: center;
-    height: 50%;
-    background-color: purple;
-    border-radius: 15px 15px 0 0;
+    flex-direction: row;
+    /* align-content: center; */
+    height: 40%;
+    border: 1px solid #777;
+    border-bottom: none;
+    /*border-radius: 15px 15px 0 0;*/
+}
+
+/* formats the black keys to have a black background */
+#lights > .black {
+    display: flex;
+    flex-direction: row;
+    background-color: black;
+    width: 1.363636%;
+}
+
+#lights > .white {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    width: 1.1363636%;
 }
 
 /* formats the box with the piano image in it */
 #piano {
     display: flex;
     flex-direction: column;
-    height: 50%;
+    height: 60%;
 }
 
 /* puts a border around the piano image */
 #piano > img {
     border: 1px solid #777;
-    border-top: none;
 }
 
 /* formats the box with the song selections in it */

@@ -168,5 +168,6 @@ pip-selfcheck.json
 .gitignore
 .idea/inspectionProfiles/
 .idea/jsLibraryMappings.xml
-Rudolph.mid
 musilux/static/musilux/vendor/
+*.mid
+

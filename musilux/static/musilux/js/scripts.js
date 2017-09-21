@@ -35,47 +35,69 @@ $(document).ready(function() {
     setRandomBackgroundColor("#play");
 });
 
+function calculateBeatInterval(bpm) {
+    return Math.floor(60000 / bpm);
+}
+
+function lightShow(midi) {
+    let bpm = midi.header.bpm;
+    let trackData = midi.tracks[1];
+    let trackNotes = trackData.notes;
+
+    let $lastKey;
+
+    let noteInterval = setInterval(function() {
+        if(trackNotes.length == 0) {
+            clearInterval(noteInterval);
+            return;
+        }
+
+        let note = trackNotes.splice(0, 1)[0];
+        console.log(note);
+
+        let $key = $('#note-'+ note.midi);
+
+        if($lastKey) $lastKey.removeAttr('style');
+
+        $key.css('background', randomRGB());
+
+        $lastKey = $key;
+    }, calculateBeatInterval(bpm));
+}
+
 
 // todo: https://github.com/Tonejs/MidiConvert, website for midi parser
 // function to parse the chosen song to play and for the lightshow
 function parseResponse(song) {
     let url = song.midifile_url;
 
-    MidiConvert.load(url, function(midi) {
-
-       console.log(midi);
-    });
-
-    let audio = $('<audio controls autoplay>');
-    let source = $('<source>', {'src': url});
-    audio.append(source);
-    $('body').append(audio)
-    audio.play()
+    MidiConvert.load(url, lightShow);
 }
 
 // function to get the chosen song
 function fetchSong(){
     let choice = $('option:selected').attr('data-songpk');
-    console.log(choice);
     // name and functionalize the ajax call
     // call those functions within this area
     $.ajax({
         url: `/api/songs/${choice}`,
         method: 'GET',
-        //data: {'title': choice},
-        //Response Callback Below
         success: function (response) {
-            console.log(response);
-            console.log('This works');
             parseResponse(response);
         },
         error: function (err) {
             console.log(err);
-            console.log('This does not work');
         }
     });
 }
 // when play button is clicked, start playing chosen song from list
 $("#play").on('click', function(){
     fetchSong();
+});
+
+// Give keys valid ids.
+$(document).ready(function() {
+    $('#lights').children('div').each(function(index) {
+       $(this).attr('id', `note-${index + 21}`);
+    });
 });

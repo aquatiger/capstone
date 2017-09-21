@@ -24,7 +24,7 @@ from django.conf.urls.static import static
 
 from accounts.views import login
 from accounts.views import register
-from musilux.views import homepage, get_song
+from musilux.views import homepage
 from musilux.viewsets import UserViewSet, SongViewSet
 
 # Routers provide an easy way of automatically determining the URL conf.
@@ -40,6 +40,5 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
                                                    # api authentication
     url(r'^api/', include(router.urls)),           # application program interface
-    url(r'^song/(?P<pk>\d+)', get_song, name='get_song')
-] + static(settings.MEDIA_URL, document_root='/')
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
