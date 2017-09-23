@@ -173,3 +173,22 @@ body {
     height: 90px;
     bottom: auto;
 }
+
+#keyboard {
+    position: relative;
+    height: 101px;
+}
+
+#keyboard.lightshow-top .black {
+    height: 100px !important;
+}
+#keyboard.lightshow-top {
+    /*border-bottom: 1px solid white;*/
+}
+
+.whitekey {
+  background-color:white;
+  border:none;
+  display:inline-block;
+  outline:1px solid black;
+}
