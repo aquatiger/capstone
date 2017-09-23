@@ -22,21 +22,27 @@ import base64
 # @login_required() used if you want login to be required
 
 # this function shows the lights above the piano image as midi file is played
-def lightshow():
-    # following function generates the color for the key
-    def colorgen():
-        preshownumber = (midinumber - 20) * 4
-        lightshowcolor = hsl(preshownumber, 100, 50)
-        return lightshowcolor
+
+def colorgen():
+    midinums = range(21, 109, 1)
+
+    colors = {}
+    for midinum in midinums:
+        preshownumber = (midinum - 20) * 4               # Key: int: 4
+        lightshowcolor = f'hsl({preshownumber}, 100%, 50%)'  # Value: str: 'hsl(4, 100, 50)'
+        colors[midinum] = lightshowcolor
+
+    return colors
 
 
 def homepage(request):
     # messages.add_message(request, messages.INFO, 'Welcome to Musilux')
     songs = Song.objects.all()
-    context = {'songs': songs}
+    colors = colorgen()
+    context = {'songs': songs, 'colors': colors}
     return render(request, 'base.html', context)
 
-
+# todo: Zack, can I delete all of this? Will it do any good?
 # @api_view(['GET'])
 # def get_song(request, pk):
 #     song = Song.objects.get(pk=pk)

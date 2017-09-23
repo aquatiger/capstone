@@ -43,7 +43,7 @@ body {
 #container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: stretch;
     width: 95%;
     height: 20%;
@@ -65,14 +65,40 @@ body {
     display: flex;
     flex-direction: row;
     background-color: black;
-    width: 1.363636%;
+    width: 1.1363636%;
 }
 
 #lights > .white {
     display: flex;
     flex-direction: row;
     background-color: white;
+    border-right: 1px solid #777;
     width: 1.1363636%;
+}
+
+#sublights {
+    display: flex;
+    flex-direction: row;
+    height: 60%;
+}
+
+#sublights > .whites {
+    background-color: yellow;
+    border-right: 1px solid #777;
+    width: calc(1.1363636% * 1.58);
+}
+
+#sublights > .whites:nth-child(9),
+#sublights > .whites:nth-child(16),
+#sublights > .whites:nth-child(19),
+#sublights > .whites:nth-child(23) {
+    width: calc((1.1363636% * 1.58) + 2px);
+}
+
+#sublights > .doublewidth {
+    background-color: yellow;
+    border-right: 1px solid #777;
+    width: calc(1.1363636% * 2);
 }
 
 /* formats the box with the piano image in it */
@@ -119,6 +145,22 @@ body {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+}
+
+/* formats the information */
+#choiceinfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+/* formats the comments box */
+#choicecomments {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
 /* formats the footer */

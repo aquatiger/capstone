@@ -35,7 +35,6 @@
         <h2 id="banner">Welcome to</h2>
         <ul id="musilux"></ul>
 
-        <!-- tODo: get lights connected to the midi file
         <!--  box container for lights and piano image -->
         <div id="container">
             <!--  box for lights -->
@@ -129,10 +128,64 @@
                 <div class='white'></div>
                 <div class='white'></div>
             </div>
+            <div id="sublights">
+                <div class='whites'></div>
+                <div class='whites'></div>
+                <div class='whites'></div>
+                <div class='doublewidth'></div>
+                <div class='whites'></div>
+                <div class='whites'></div>
+                <div class='doublewidth'></div>
+                <div class='doublewidth'></div>
+                <div class='whites'></div>
+                <div class='whites'></div>
+                <div class='doublewidth'></div>
+                <div class='whites'></div>
+                <div class='whites'></div>
+                <div class='doublewidth'></div>
+                <div class='doublewidth'></div>
+                <div class='whites'></div>
+                <div class='whites'></div>
+                <div class='doublewidth'></div>
+                <div class='whites'></div>
+                <div class='whites'></div>
+                <div class='doublewidth'></div>
+                <div class='doublewidth'></div>
+                <div class='whites'></div>
+                <div class='whites'></div>
+                <div class='doublewidth'></div>
+                <div class='whites'></div>
+                <div class='whites'></div>
+                <div class='doublewidth'></div>
+                <div class='doublewidth'></div>
+                <div class='whites'></div>
+                <div class='whites'></div>
+                <div class='doublewidth'></div>
+                <div class='whites'></div>
+                <div class='whites'></div>
+                <div class='doublewidth'></div>
+                <div class='doublewidth'></div>
+                <div class='whites'></div>
+                <div class='whites'></div>
+                <div class='doublewidth'></div>
+                <div class='whites'></div>
+                <div class='whites'></div>
+                <div class='doublewidth'></div>
+                <div class='doublewidth'></div>
+                <div class='whites'></div>
+                <div class='whites'></div>
+                <div class='doublewidth'></div>
+                <div class='whites'></div>
+                <div class='whites'></div>
+                <div class='doublewidth'></div>
+                <div class='doublewidth'></div>
+                <div class='whites'></div>
+                <div class='whites'></div>
+             </div>
             <!--  box for piano image -->
-            <div id="piano">
-               <img src="{% static 'musilux/img/piano.jpg' %}">
-            </div>
+{#            <div id="piano">#}
+                <div id="keyboard"></div>
+{#            </div>#}
         </div>
 
         <!-- used div instead of select because the form didn't display properly -->
@@ -150,28 +203,30 @@
         <div>
             <button id="play">Play</button><br>
         </div>
-{#        <div id="choiceboxes"> <!-- Data for song after choice has been made -->#}
-{#        <div id="choiceinfo">#}
-{#              {% for song in songs %}#}
-{#                {{ song.performer }}<br>#}
-{#                {{ song.composer }}<br>#}
-{#                {{ song.year_c }}<br>#}
-{#                {{ song.description }}<br>#}
-{#              {%  endfor %}#}
-{#            </div>#}
-{#            <div> <!-- todo <img src="{% static 'musilux/img/' %}" --></div>#}
-{#            <div>#}
-{#              {% for song in songs %}#}
-{#                {{ song.comments }}<br>#}
-{#              {% endfor %}#}
-{#            </div>#}
-{#        </div> //-->#}
+        <div id="choiceboxes"> <!-- Data for song after choice has been made -->
+          <div id="choiceinfo"> <!-- Information related to the song the user chooses -->
+                {{ song.performer }}<br>
+                {{ song.composer }}<br>
+                {{ song.year }}<br>
+                {{ song.description }}<br>
+            </div>
+{#            <div id="chocieimg"> <!-- todo <img src="{% static 'musilux/img/' %}" --></div>#}
+            <div id ="choicecomments"> <!-- Comments related to the song the user chooses -->
+                {{ song.comments }}<br>
+            </div>
+        </div>
 
         <footer id="bottom">
             <p>Programmed by Aquatiger <img src="{% static 'musilux/img/aquatigermini.jpg' %}"
                                             alt="Unavailable" height="30" width="40"> 2017</p>
         </footer>
     </div>
+
+    <script>
+        {% autoescape off %}
+            let colors = {{ colors }};
+        {% endautoescape %}
+    </script>
 
     <script src="{% static 'musilux/js/MidiConvert.js' %}" ></script>
     <script src="{% static 'musilux/js/scripts.js' %}" ></script>
