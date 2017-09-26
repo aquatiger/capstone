@@ -41,6 +41,7 @@ $(document).ready(function() {
     setRandomBackgroundColor("#play");
 });
 
+// bpm stands for beats per minute
 function calculateBeatInterval(bpm) {
     return Math.floor(60000 / bpm);
 }
@@ -70,7 +71,7 @@ function lightShow(midi) {
         let note_color = getColor(midinum, velocity);
         // console.log(note_color);
 
-        let bgsubstr = `background 0.02s`;
+        let bgsubstr = `background 0.02s`; // I think this should be note.duration
 
         let lightColor = {
             // 'background': randomRGB(),
@@ -93,6 +94,7 @@ function lightShow(midi) {
 
 // todo: Zack, did we use Tonejs?
 // todo: https://github.com/Tonejs/MidiConvert, website for midi parser
+
 // function to parse the chosen song to play and for the lightshow
 function parseResponse(song) {
     let url = song.midifile_url;
@@ -135,22 +137,20 @@ $(document).ready(function() {
     });
 });
 
-//
 // Matthew's piano script.
-//
 
-var keyboards = document.querySelectorAll('#keyboard');
+let keyboards = document.querySelectorAll('#keyboard');
 
 keyboards.forEach(function(keyboard) {
-    var pattern = [1,1,0,1,1,0,1];
+    let pattern = [1,1,0,1,1,0,1];
     //var pattern = [1,1,1,1,1,1,1];
-    var n_white_keys = 52;
-    var key_width = 100/n_white_keys;
-    var white_key_height = 100;
-    var black_key_height = 60;
+    let n_white_keys = 52;
+    let key_width = 100/n_white_keys;
+    let white_key_height = 100;
+    let black_key_height = 60;
 
-    for (var i=0; i<n_white_keys; ++i) {
-      var white_key = document.createElement('div');
+    for (let i=0; i<n_white_keys; ++i) {
+      let white_key = document.createElement('div');
       white_key.classList.add('whitekey');
       white_key.style.position = 'absolute';
       white_key.style.left = i*(key_width)+'%';
@@ -160,7 +160,7 @@ keyboards.forEach(function(keyboard) {
       keyboard.appendChild(white_key);
 
       if (i != 0 && pattern[i%pattern.length] == 1) {
-        var black_key = document.createElement('div');
+        let black_key = document.createElement('div');
         black_key.className = 'black';
         black_key.style.backgroundColor = 'black';
         black_key.style.width = (key_width-0.8)+'%';
@@ -176,7 +176,4 @@ keyboards.forEach(function(keyboard) {
 
 })
 
-
-//
 // End piano script.
-//

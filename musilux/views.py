@@ -21,14 +21,14 @@ import base64
 # Create your views here.
 # @login_required() used if you want login to be required
 
-# this function shows the lights above the piano image as midi file is played
 
+# this function shows the lights above the "bottom" piano generated image as midi file is played
 def colorgen():
     midinums = range(21, 109, 1)
 
     colors = {}
     for midinum in midinums:
-        preshownumber = (midinum - 20) * 4               # Key: int: 4
+        preshownumber = (midinum - 20) * 4                   # Key: int: 4
         lightshowcolor = f'hsl({preshownumber}, 100%, 50%)'  # Value: str: 'hsl(4, 100, 50)'
         colors[midinum] = lightshowcolor
 

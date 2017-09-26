@@ -15,7 +15,8 @@ class Song(models.Model):
     description = models.TextField()                 # description also could be or could include history of song
     created = models.DateField(auto_now=True)        # day uploaded to the system
     last_accessed = models.DateField(auto_now=True)  # last time the file was accessed
-    midifile = models.FileField(upload_to='midifiles/')  # reference to midi file
+    midifile = models.FileField(upload_to='midifiles/')
+                                                     # reference to midi file
     comments = models.TextField()                    # uncategorizable remarks
 
     def __str__(self):
