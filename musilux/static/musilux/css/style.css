@@ -19,16 +19,17 @@ body {
 /* formats the words "Welcome to*/
 #banner {
     color: white;
+    font-family: serif;
     font-size: 350%;
+    font-weight: 200;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
     width: 95%;
-    height: 70px;
 }
 
-/* formats the word "Musilux */
+/* formats the word "Musilux" */
 #musilux {
     font-size: 500%;
     display: flex;
@@ -39,7 +40,7 @@ body {
 }
 
 #musilux > li {
-    margin: 0 3px;
+    margin: 0 4px;
 }
 
 #container {
@@ -49,17 +50,19 @@ body {
     align-content: center;
     align-items: stretch;
     width: 100%;
+    padding-bottom: 40px;
+    /*height: 100%;*/
 }
 
 /* formatted keyboard generated */
 #keyboard {
     position: relative;
-    height: 101px;
+    height: 60px;
     width: 100%;
 }
 
 #keyboard.lightshow-top .black {
-    height: 100px !important;
+    height: 60px !important;
 }
 
 #keyboard.lightshow-top {
@@ -80,7 +83,7 @@ body {
     justify-content: center;
     align-items: center;
     width: auto;
-    height: 100px;
+    /*height: 10%;*/
 }
 
 #songselect {
@@ -97,6 +100,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 10%;
 }
 
 /* formats the play button */
@@ -104,10 +108,10 @@ body {
     font-size: 250%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    /*justify-content: space-around;*/
     /*align-content: center;*/
     align-items: center;
-    width: 15%;
+    /*width: 15%;*/
     height: 60px;
 }
 
@@ -143,7 +147,7 @@ body {
     justify-content: center;
     align-items: center;
     width: 95%;
-    height: 90px;
-    bottom: auto;
-    margin: 0%;
+    height: 60px;
+    bottom: absolute;
+    margin: 0;
 }

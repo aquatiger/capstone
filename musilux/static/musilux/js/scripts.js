@@ -92,14 +92,58 @@ function lightShow(midi) {
     }, calculateBeatInterval(bpm));
 }
 
-// todo: Zack, did we use Tonejs?
-// todo: https://github.com/Tonejs/MidiConvert, website for midi parser
+
+let testSynth = new Tone.PolySynth(8).toMaster();
+
+function newLightShow(midi) {
+    Tone.Transport.bpm.value = midi.header.bpm;
+
+    let $lastKey;
+
+    let midiPart = new Tone.Part(function(time, note) {
+        let velocity = note.velocity;
+
+        let $key = $(`#note-${note.midi}`);
+
+        if($lastKey) {
+            if($lastKey.hasClass('blackkey'))
+                $lastKey.css('background-color', '#000');
+            else if($lastKey.hasClass('whitekey'))
+                $lastKey.css('background-color', '#FFF');
+
+            $lastKey.css('opacity', '1');
+        }
+
+        let note_color = getColor(note.midi, velocity);
+        // console.log(note_color);
+
+        // let bgsubstr = `background 0.02s`; // I think this should be note.duration
+
+        let lightColor = {
+            // 'background': randomRGB(),
+            'background-color': note_color,
+            'opacity': velocity
+            };
+
+
+        console.log(lightColor);
+        // let lightColor = {backgroundColor: randomRGB()};
+        $key.css(lightColor);
+
+        $lastKey = $key;
+
+        testSynth.triggerAttackRelease(note.name, note.duration, note.velocity);
+        console.log(note);
+    }, midi.tracks[0].notes).start();
+
+    Tone.Transport.start();
+}
 
 // function to parse the chosen song to play and for the lightshow
 function parseResponse(song) {
     let url = song.midifile_url;
 
-    MidiConvert.load(url, lightShow);
+    MidiConvert.load(url, newLightShow);
     //
     // let performer = song.performer;
     // let composer = song.composer;
@@ -131,13 +175,13 @@ $("#play").on('click', function(){
 });
 
 // Give keys valid ids.
-$(document).ready(function() {
+/*$(document).ready(function() {
     $('#keyboard.lightshow-top').children('div').each(function(index) {
        $(this).attr('id', `note-${index + 21}`);
     });
-});
+});*/
 
-// Matthew's piano script.
+// Matthew Cooper's piano generation script.
 
 let keyboards = document.querySelectorAll('#keyboard');
 
@@ -149,19 +193,12 @@ keyboards.forEach(function(keyboard) {
     let white_key_height = 100;
     let black_key_height = 60;
 
-    for (let i=0; i<n_white_keys; ++i) {
-      let white_key = document.createElement('div');
-      white_key.classList.add('whitekey');
-      white_key.style.position = 'absolute';
-      white_key.style.left = i*(key_width)+'%';
-      white_key.style.top = 0;
-      white_key.style.width = key_width+'%';
-      white_key.style.height = white_key_height+'px';
-      keyboard.appendChild(white_key);
+    let id = 21;
 
+    for (let i=0; i<n_white_keys; ++i) {
       if (i != 0 && pattern[i%pattern.length] == 1) {
         let black_key = document.createElement('div');
-        black_key.className = 'black';
+        black_key.className = 'blackkey';
         black_key.style.backgroundColor = 'black';
         black_key.style.width = (key_width-0.8)+'%';
         black_key.style.height = black_key_height+'px';
@@ -170,8 +207,23 @@ keyboards.forEach(function(keyboard) {
         black_key.style.top = 0;
         black_key.style.transform = 'translateX(-50%)';
         black_key.style.left = (i*(key_width))+'%';
+        black_key.id = 'note-'+id;
+        id += 1;
         keyboard.appendChild(black_key);
       }
+
+      let white_key = document.createElement('div');
+      white_key.classList.add('whitekey');
+      white_key.style.position = 'absolute';
+      white_key.style.left = i*(key_width)+'%';
+      white_key.style.top = 0;
+      white_key.style.width = key_width+'%';
+      white_key.style.height = white_key_height+'px';
+      white_key.id = 'note-'+id; //    Give keys valid ids
+      id += 1;
+      keyboard.appendChild(white_key);
+
+
     }
 
 })

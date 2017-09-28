@@ -6,16 +6,23 @@
     <meta charset="UTF-8">
     <title>Musilux</title>
     <link rel="stylesheet" type="text/css" href="{% static 'musilux/css/style.css' %}">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 
     <!-- loads jquery a csrf token, bootstrap (just in case, plan on using later)  -->
     <script
-          src="http://code.jquery.com/jquery-3.2.1.js"
-          integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-          crossorigin="anonymous"></script>
+        src="http://code.jquery.com/jquery-3.2.1.js"
+        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+        crossorigin="anonymous"></script>
+
     <script src="{% static 'musilux/js/csrf.js' %}" ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+            integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+            integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+            crossorigin="anonymous"></script>
 
 
 </head>
@@ -39,11 +46,11 @@
         <div id="container">
 
                 <div>
-                    <div id="keyboard" class="lightshow-top">
+                    <div id="keyboard" class="lightshow-top"></div>
                 </div>
 
                 <div>
-                    <div id="keyboard">
+                    <div id="keyboard"></div>
                 </div>
 
         </div>
@@ -58,7 +65,7 @@
                     {% endfor %}
                 </select>
         </div>
-        </div>
+
         <!-- play button to start the show -->
         <div id="playbox">
             <button id="play">Play</button><br>
@@ -70,14 +77,14 @@
                 {{ song.year }}<br>
                 {{ song.description }}<br>
             </div>
-{#            <div id="chocieimg"> <!-- todo <img src="{% static 'musilux/img/' %}" --></div>#}
+{#            <div id="chocieimg"> todo <img src="{% static 'musilux/img/' %}"</div>#}
             <div id ="choicecomments"> <!-- Comments related to the song the user chooses -->
                 {{ song.comments }}<br>
             </div>
         </div>
 
         <footer id="bottom">
-            <p>Programmed by Aquatiger <img src="{% static 'musilux/img/aquatigermini.jpg' %}"
+            <p>Programmed (with help) by Aquatiger <img src="{% static 'musilux/img/aquatiger mini_black.jpg' %}"
                                             alt="Unavailable" height="30" width="40"> 2017</p>
         </footer>
     </div>
@@ -88,6 +95,7 @@
         {% endautoescape %}
     </script>
 
+    <script src="{% static 'musilux/js/Tone.min.js' %}" ></script>
     <script src="{% static 'musilux/js/MidiConvert.js' %}" ></script>
     <script src="{% static 'musilux/js/scripts.js' %}" ></script>
 
