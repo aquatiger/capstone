@@ -46,61 +46,67 @@ function calculateBeatInterval(bpm) {
     return Math.floor(60000 / bpm);
 }
 
-function lightShow(midi) {
-    let bpm = midi.header.bpm;
-    let trackData = midi.tracks[0];
-    let trackNotes = trackData.notes;
-
-    let $lastKey;
-
-    let noteInterval = setInterval(function() {
-        if(trackNotes.length === 0) {
-            clearInterval(noteInterval);
-            return;
-        }
-
-        let note = trackNotes.splice(0, 1)[0];
-        console.log(note);
-        let velocity = note.velocity;
-        let midinum = note.midi;
-
-        let $key = $(`#note-${midinum}`);
-
-        if($lastKey) $lastKey.removeAttr('style');
-
-        let note_color = getColor(midinum, velocity);
-        // console.log(note_color);
-
-        let bgsubstr = `background 0.02s`; // I think this should be note.duration
-
-        let lightColor = {
-            // 'background': randomRGB(),
-            'background-color': note_color,
-            '-webkit-transition': bgsubstr,
-            '-moz-transition': bgsubstr,
-            '-o-transition': bgsubstr,
-            'transition': bgsubstr,
-            'opacity': velocity
-            };
-
-
-        console.log(lightColor);
-        // let lightColor = {backgroundColor: randomRGB()};
-        $key.css(lightColor);
-
-        $lastKey = $key;
-    }, calculateBeatInterval(bpm));
-}
-
-
+// function lightShow(midi) {
+//     let bpm = midi.header.bpm;
+//     let trackData = midi.tracks[0];
+//     let trackNotes = trackData.notes;
+//
+//     let $lastKey;
+//
+//     let noteInterval = setInterval(function() {
+//         if(trackNotes.length === 0) {
+//             clearInterval(noteInterval);
+//             return;
+//         }
+//
+//         let note = trackNotes.splice(0, 1)[0];
+//         console.log(note);
+//         let velocity = note.velocity;
+//         let midinum = note.midi;
+//
+//         let $key = $(`#note-${midinum}`);
+//
+//         if($lastKey) $lastKey.removeAttr('style');
+//
+//         let note_color = getColor(midinum, velocity);
+//         // console.log(note_color);
+//
+//         let bgsubstr = `background 0.02s`; // I think this should be note.duration
+//
+//         let lightColor = {
+//             // 'background': randomRGB(),
+//             'background-color': note_color,
+//             '-webkit-transition': bgsubstr,
+//             '-moz-transition': bgsubstr,
+//             '-o-transition': bgsubstr,
+//             'transition': bgsubstr,
+//             'opacity': velocity
+//             };
+//
+//
+//         console.log(lightColor);
+//         // let lightColor = {backgroundColor: randomRGB()};
+//         $key.css(lightColor);
+//
+//         $lastKey = $key;
+//     }, calculateBeatInterval(bpm));
+// }
+//
+//
 let testSynth = new Tone.PolySynth(8).toMaster();
 
 function newLightShow(midi) {
+    console.log(midi);
+    Tone.Transport.latencyHint = 2;
     Tone.Transport.bpm.value = midi.header.bpm;
 
     let $lastKey;
+    var trackNumber = (midi.tracks.length > 1)? midi.tracks.length-1 : 0;
 
     let midiPart = new Tone.Part(function(time, note) {
+        testSynth.triggerAttackRelease(note.name, '4n', 0.2);
+        // console.log(note.duration);
+        //
         let velocity = note.velocity;
 
         let $key = $(`#note-${note.midi}`);
@@ -122,21 +128,19 @@ function newLightShow(midi) {
         let lightColor = {
             // 'background': randomRGB(),
             'background-color': note_color,
-            'opacity': velocity
+            // 'opacity': velocity
             };
 
 
-        console.log(lightColor);
+        // console.log(lightColor);
         // let lightColor = {backgroundColor: randomRGB()};
         $key.css(lightColor);
 
         $lastKey = $key;
-
-        testSynth.triggerAttackRelease(note.name, note.duration, note.velocity);
-        console.log(note);
-    }, midi.tracks[0].notes).start();
+    }, midi.tracks[trackNumber].notes);
 
     Tone.Transport.start();
+    midiPart.start();
 }
 
 // function to parse the chosen song to play and for the lightshow
@@ -144,18 +148,22 @@ function parseResponse(song) {
     let url = song.midifile_url;
 
     MidiConvert.load(url, newLightShow);
-    //
-    // let performer = song.performer;
-    // let composer = song.composer;
-    // let year = song.year;
-    // let description = song.description;
-    // let comments = song.comments;
+}
 
+function playSong(midifile) {
+    MIDI.programChange(0, MIDI.GM.byName['acoustic_grand_piano'].number);
+    MIDI.Player.timeWarp = 1;
+    MIDI.Player.loadFile(midifile, MIDI.Player.start);
+    MIDI.Player.addListener(function (data) {
+        console.log("I'm playing!!!");
+        console.log(data);
+    });
 }
 
 // function to get the song the user chooses
-function fetchSong(){
+function fetchSong() {
     let choice = $('option:selected').attr('data-songpk');
+
     // name and functionalize the ajax call
     // call those functions within this area
     $.ajax({
@@ -169,6 +177,26 @@ function fetchSong(){
         }
     });
 }
+    // // MIDI.Player.clearAnimation();
+    // MIDI.Player.setAnimation(function(data) {
+    //     let now = data.now; // where we are now
+    //     let end = data.end; // time when song ends
+    //     let events = data.events; // all the notes currently being processed
+    // });
+
+    // name and functionalize the ajax call
+    // call those functions within this area
+    // $.ajax({
+    //     url: `/api/songs/${choice}`,
+    //     method: 'GET',
+    //     success: function (response) {
+    //         parseResponse(response);
+    //     },
+    //     error: function (err) {
+    //         console.log(err);
+    //     }
+    // });
+
 // when play button is clicked, start playing chosen song from list
 $("#play").on('click', function(){
     fetchSong();
@@ -226,6 +254,6 @@ keyboards.forEach(function(keyboard) {
 
     }
 
-})
+});
 
 // End piano script.
