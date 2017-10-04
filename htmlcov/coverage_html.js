@@ -26,8 +26,8 @@ coverage.wire_up_help_panel = function () {
         // Show the help panel, and position it so the keyboard icon in the
         // panel is in the same place as the keyboard icon in the header.
         $(".help_panel").show();
-        var koff = $("#keyboard_icon").offset();
-        var poff = $("#panel_icon").position();
+        let koff = $("#keyboard_icon").offset();
+        let poff = $("#panel_icon").position();
         $(".help_panel").offset({
             top: koff.top-poff.top,
             left: koff.left-poff.left
@@ -41,20 +41,20 @@ coverage.wire_up_help_panel = function () {
 // Create the events for the filter box.
 coverage.wire_up_filter = function () {
     // Cache elements.
-    var table = $("table.index");
-    var table_rows = table.find("tbody tr");
-    var table_row_names = table_rows.find("td.name a");
-    var no_rows = $("#no_rows");
+    let table = $("table.index");
+    let table_rows = table.find("tbody tr");
+    let table_row_names = table_rows.find("td.name a");
+    let no_rows = $("#no_rows");
 
     // Create a duplicate table footer that we can modify with dynamic summed values.
-    var table_footer = $("table.index tfoot tr");
-    var table_dynamic_footer = table_footer.clone();
+    let table_footer = $("table.index tfoot tr");
+    let table_dynamic_footer = table_footer.clone();
     table_dynamic_footer.attr('class', 'total_dynamic hidden');
     table_footer.after(table_dynamic_footer);
 
     // Observe filter keyevents.
     $("#filter").on("keyup change", $.debounce(150, function (event) {
-        var filter_value = $(this).val();
+        let filter_value = $(this).val();
 
         if (filter_value === "") {
             // Filter box is empty, remove all filtering.
@@ -73,12 +73,12 @@ coverage.wire_up_filter = function () {
         }
         else {
             // Filter table items by value.
-            var hidden = 0;
-            var shown = 0;
+            let hidden = 0;
+            let shown = 0;
 
             // Hide / show elements.
             $.each(table_row_names, function () {
-                var element = $(this).parents("tr");
+                let element = $(this).parents("tr");
 
                 if ($(this).text().indexOf(filter_value) === -1) {
                     // hide
@@ -109,19 +109,19 @@ coverage.wire_up_filter = function () {
             // Manage dynamic header:
             if (hidden > 0) {
                 // Calculate new dynamic sum values based on visible rows.
-                for (var column = 2; column < 20; column++) {
+                for (let column = 2; column < 20; column++) {
                     // Calculate summed value.
-                    var cells = table_rows.find('td:nth-child(' + column + ')');
+                    let cells = table_rows.find('td:nth-child(' + column + ')');
                     if (!cells.length) {
                         // No more columns...!
                         break;
                     }
 
-                    var sum = 0, numer = 0, denom = 0;
+                    let sum = 0, numer = 0, denom = 0;
                     $.each(cells.filter(':visible'), function () {
-                        var ratio = $(this).data("ratio");
+                        let ratio = $(this).data("ratio");
                         if (ratio) {
-                            var splitted = ratio.split(" ");
+                            let splitted = ratio.split(" ");
                             numer += parseInt(splitted[0], 10);
                             denom += parseInt(splitted[1], 10);
                         }
@@ -131,18 +131,18 @@ coverage.wire_up_filter = function () {
                     });
 
                     // Get footer cell element.
-                    var footer_cell = table_dynamic_footer.find('td:nth-child(' + column + ')');
+                    let footer_cell = table_dynamic_footer.find('td:nth-child(' + column + ')');
 
                     // Set value into dynamic footer cell element.
                     if (cells[0].innerHTML.indexOf('%') > -1) {
                         // Percentage columns use the numerator and denominator,
                         // and adapt to the number of decimal places.
-                        var match = /\.([0-9]+)/.exec(cells[0].innerHTML);
-                        var places = 0;
+                        let match = /\.([0-9]+)/.exec(cells[0].innerHTML);
+                        let places = 0;
                         if (match) {
                             places = match[1].length;
                         }
-                        var pct = numer * 100 / denom;
+                        let pct = numer * 100 / denom;
                         footer_cell.text(pct.toFixed(places) + '%');
                     }
                     else {
@@ -170,15 +170,15 @@ coverage.wire_up_filter = function () {
 // Loaded on index.html
 coverage.index_ready = function ($) {
     // Look for a cookie containing previous sort settings:
-    var sort_list = [];
-    var cookie_name = "COVERAGE_INDEX_SORT";
-    var i;
+    let sort_list = [];
+    let cookie_name = "COVERAGE_INDEX_SORT";
+    let i;
 
     // This almost makes it worth installing the jQuery cookie plugin:
     if (document.cookie.indexOf(cookie_name) > -1) {
-        var cookies = document.cookie.split(";");
+        let cookies = document.cookie.split(";");
         for (i = 0; i < cookies.length; i++) {
-            var parts = cookies[i].split("=");
+            let parts = cookies[i].split("=");
 
             if ($.trim(parts[0]) === cookie_name && parts[1]) {
                 sort_list = eval("[[" + parts[1] + "]]");
@@ -210,8 +210,8 @@ coverage.index_ready = function ($) {
 
     // Configure our tablesorter to handle the variable number of
     // columns produced depending on report options:
-    var headers = [];
-    var col_count = $("table.index > thead > tr > th").length;
+    let headers = [];
+    let col_count = $("table.index > thead > tr > th").length;
 
     headers[0] = { sorter: 'text' };
     for (i = 1; i < col_count-1; i++) {
@@ -239,7 +239,7 @@ coverage.index_ready = function ($) {
 
 coverage.pyfile_ready = function ($) {
     // If we're directed to a particular line number, highlight the line.
-    var frag = location.hash;
+    let frag = location.hash;
     if (frag.length > 2 && frag[1] === 'n') {
         $(frag).addClass('highlight');
         coverage.set_sel(parseInt(frag.substr(2), 10));
@@ -271,7 +271,7 @@ coverage.pyfile_ready = function ($) {
 
 coverage.toggle_lines = function (btn, cls) {
     btn = $(btn);
-    var hide = "hide_"+cls;
+    let hide = "hide_"+cls;
     if (btn.hasClass(hide)) {
         $("#source ."+cls).removeClass(hide);
         btn.removeClass(hide);
@@ -321,11 +321,11 @@ coverage.is_transparent = function (color) {
 };
 
 coverage.to_next_chunk = function () {
-    var c = coverage;
+    let c = coverage;
 
     // Find the start of the next colored chunk.
-    var probe = c.sel_end;
-    var color, probe_line;
+    let probe = c.sel_end;
+    let color, probe_line;
     while (true) {
         probe_line = c.line_elt(probe);
         if (probe_line.length === 0) {
@@ -339,10 +339,10 @@ coverage.to_next_chunk = function () {
     }
 
     // There's a next chunk, `probe` points to it.
-    var begin = probe;
+    let begin = probe;
 
     // Find the end of this chunk.
-    var next_color = color;
+    let next_color = color;
     while (next_color === color) {
         probe++;
         probe_line = c.line_elt(probe);
@@ -353,15 +353,15 @@ coverage.to_next_chunk = function () {
 };
 
 coverage.to_prev_chunk = function () {
-    var c = coverage;
+    let c = coverage;
 
     // Find the end of the prev colored chunk.
-    var probe = c.sel_begin-1;
-    var probe_line = c.line_elt(probe);
+    let probe = c.sel_begin-1;
+    let probe_line = c.line_elt(probe);
     if (probe_line.length === 0) {
         return;
     }
-    var color = probe_line.css("background-color");
+    let color = probe_line.css("background-color");
     while (probe > 0 && c.is_transparent(color)) {
         probe--;
         probe_line = c.line_elt(probe);
@@ -372,10 +372,10 @@ coverage.to_prev_chunk = function () {
     }
 
     // There's a prev chunk, `probe` points to its last line.
-    var end = probe+1;
+    let end = probe+1;
 
     // Find the beginning of this chunk.
-    var prev_color = color;
+    let prev_color = color;
     while (prev_color === color) {
         probe--;
         probe_line = c.line_elt(probe);
@@ -387,11 +387,11 @@ coverage.to_prev_chunk = function () {
 
 // Return the line number of the line nearest pixel position pos
 coverage.line_at_pos = function (pos) {
-    var l1 = coverage.line_elt(1),
+    let l1 = coverage.line_elt(1),
         l2 = coverage.line_elt(2),
         result;
     if (l1.length && l2.length) {
-        var l1_top = l1.offset().top,
+        let l1_top = l1.offset().top,
             line_height = l2.offset().top - l1_top,
             nlines = (pos - l1_top) / line_height;
         if (nlines < 1) {
@@ -414,8 +414,8 @@ coverage.selection_ends_on_screen = function () {
         return 0;
     }
 
-    var top = coverage.line_elt(coverage.sel_begin);
-    var next = coverage.line_elt(coverage.sel_end-1);
+    let top = coverage.line_elt(coverage.sel_begin);
+    let next = coverage.line_elt(coverage.sel_end-1);
 
     return (
         (top.isOnScreen() ? 1 : 0) +
@@ -428,7 +428,7 @@ coverage.to_next_chunk_nicely = function () {
     if (coverage.selection_ends_on_screen() === 0) {
         // The selection is entirely off the screen: select the top line on
         // the screen.
-        var win = $(window);
+        let win = $(window);
         coverage.select_line_or_chunk(coverage.line_at_pos(win.scrollTop()));
     }
     coverage.to_next_chunk();
@@ -437,7 +437,7 @@ coverage.to_next_chunk_nicely = function () {
 coverage.to_prev_chunk_nicely = function () {
     coverage.finish_scrolling();
     if (coverage.selection_ends_on_screen() === 0) {
-        var win = $(window);
+        let win = $(window);
         coverage.select_line_or_chunk(coverage.line_at_pos(win.scrollTop() + win.height()));
     }
     coverage.to_prev_chunk();
@@ -446,17 +446,17 @@ coverage.to_prev_chunk_nicely = function () {
 // Select line number lineno, or if it is in a colored chunk, select the
 // entire chunk
 coverage.select_line_or_chunk = function (lineno) {
-    var c = coverage;
-    var probe_line = c.line_elt(lineno);
+    let c = coverage;
+    let probe_line = c.line_elt(lineno);
     if (probe_line.length === 0) {
         return;
     }
-    var the_color = probe_line.css("background-color");
+    let the_color = probe_line.css("background-color");
     if (!c.is_transparent(the_color)) {
         // The line is in a highlighted chunk.
         // Search backward for the first line.
-        var probe = lineno;
-        var color = the_color;
+        let probe = lineno;
+        let color = the_color;
         while (probe > 0 && color === the_color) {
             probe--;
             probe_line = c.line_elt(probe);
@@ -465,7 +465,7 @@ coverage.select_line_or_chunk = function (lineno) {
             }
             color = probe_line.css("background-color");
         }
-        var begin = probe + 1;
+        let begin = probe + 1;
 
         // Search forward for the last line.
         probe = lineno;
@@ -484,11 +484,11 @@ coverage.select_line_or_chunk = function (lineno) {
 };
 
 coverage.show_selection = function () {
-    var c = coverage;
+    let c = coverage;
 
     // Highlight the lines in the chunk
     c.code_container().find(".highlight").removeClass("highlight");
-    for (var probe = c.sel_begin; probe > 0 && probe < c.sel_end; probe++) {
+    for (let probe = c.sel_begin; probe > 0 && probe < c.sel_end; probe++) {
         c.num_elt(probe).addClass("highlight");
     }
 
@@ -500,8 +500,8 @@ coverage.scroll_to_selection = function () {
     if (coverage.selection_ends_on_screen() < 2) {
         // Need to move the page. The html,body trick makes it scroll in all
         // browsers, got it from http://stackoverflow.com/questions/3042651
-        var top = coverage.line_elt(coverage.sel_begin);
-        var top_pos = parseInt(top.offset().top, 10);
+        let top = coverage.line_elt(coverage.sel_begin);
+        let top_pos = parseInt(top.offset().top, 10);
         coverage.scroll_window(top_pos - 30);
     }
 };
@@ -515,7 +515,7 @@ coverage.finish_scrolling = function () {
 };
 
 coverage.init_scroll_markers = function () {
-    var c = coverage;
+    let c = coverage;
     // Init some variables
     c.lines_len = $('td.text p').length;
     c.body_h = $('body').height();
@@ -527,7 +527,7 @@ coverage.init_scroll_markers = function () {
 };
 
 coverage.resize_scroll_markers = function () {
-    var c = coverage,
+    let c = coverage,
         min_line_height = 3,
         max_line_height = 10,
         visible_window_h = $(window).height();
@@ -539,7 +539,7 @@ coverage.resize_scroll_markers = function () {
     }
 
     $("body").append("<div id='scroll_marker'>&nbsp;</div>");
-    var scroll_marker = $('#scroll_marker'),
+    let scroll_marker = $('#scroll_marker'),
         marker_scale = scroll_marker.height() / c.body_h,
         line_height = scroll_marker.height() / c.lines_len;
 
@@ -553,12 +553,12 @@ coverage.resize_scroll_markers = function () {
         line_height = min_line_height;
     }
 
-    var previous_line = -99,
+    let previous_line = -99,
         last_mark,
         last_top;
 
     c.missed_lines.each(function () {
-        var line_top = Math.round($(this).offset().top * marker_scale),
+        let line_top = Math.round($(this).offset().top * marker_scale),
             id_name = $(this).attr('id'),
             line_number = parseInt(id_name.substring(1, id_name.length));
 

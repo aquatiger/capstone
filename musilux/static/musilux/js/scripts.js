@@ -1,5 +1,7 @@
 "use strict";
 
+// Large portions are commented out but not deleted because I'm not sure whether they will be useful later.
+
 // a generic random color generator used for "Musilux" and play button background
 function randomRGB() {
     let r = Math.floor(Math.random() * 255);
@@ -101,7 +103,7 @@ function newLightShow(midi) {
     Tone.Transport.bpm.value = midi.header.bpm;
 
     let $lastKey;
-    var trackNumber = (midi.tracks.length > 1)? midi.tracks.length-1 : 0;
+    let trackNumber = (midi.tracks.length > 1)? midi.tracks.length-1 : 0;
 
     let midiPart = new Tone.Part(function(time, note) {
         testSynth.triggerAttackRelease(note.name, '4n', 0.2);
@@ -215,7 +217,7 @@ let keyboards = document.querySelectorAll('#keyboard');
 
 keyboards.forEach(function(keyboard) {
     let pattern = [1,1,0,1,1,0,1];
-    //var pattern = [1,1,1,1,1,1,1];
+    //let pattern = [1,1,1,1,1,1,1];
     let n_white_keys = 52;
     let key_width = 100/n_white_keys;
     let white_key_height = 100;

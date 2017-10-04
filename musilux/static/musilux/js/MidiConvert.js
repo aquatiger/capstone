@@ -65,7 +65,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
 /******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
+/******/ 		let getter = module && module.__esModule ?
 /******/ 			function getDefault() { return module['default']; } :
 /******/ 			function getModuleExports() { return module; };
 /******/ 		__webpack_require__.d(getter, 'a', getter);
@@ -90,11 +90,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return instrumentByPatchID; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return instrumentFamilyByID; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return drumKitByPatchID; });
-var instrumentByPatchID = ["acoustic grand piano", "bright acoustic piano", "electric grand piano", "honky-tonk piano", "electric piano 1", "electric piano 2", "harpsichord", "clavi", "celesta", "glockenspiel", "music box", "vibraphone", "marimba", "xylophone", "tubular bells", "dulcimer", "drawbar organ", "percussive organ", "rock organ", "church organ", "reed organ", "accordion", "harmonica", "tango accordion", "acoustic guitar (nylon)", "acoustic guitar (steel)", "electric guitar (jazz)", "electric guitar (clean)", "electric guitar (muted)", "overdriven guitar", "distortion guitar", "guitar harmonics", "acoustic bass", "electric bass (finger)", "electric bass (pick)", "fretless bass", "slap bass 1", "slap bass 2", "synth bass 1", "synth bass 2", "violin", "viola", "cello", "contrabass", "tremolo strings", "pizzicato strings", "orchestral harp", "timpani", "string ensemble 1", "string ensemble 2", "synthstrings 1", "synthstrings 2", "choir aahs", "voice oohs", "synth voice", "orchestra hit", "trumpet", "trombone", "tuba", "muted trumpet", "french horn", "brass section", "synthbrass 1", "synthbrass 2", "soprano sax", "alto sax", "tenor sax", "baritone sax", "oboe", "english horn", "bassoon", "clarinet", "piccolo", "flute", "recorder", "pan flute", "blown bottle", "shakuhachi", "whistle", "ocarina", "lead 1 (square)", "lead 2 (sawtooth)", "lead 3 (calliope)", "lead 4 (chiff)", "lead 5 (charang)", "lead 6 (voice)", "lead 7 (fifths)", "lead 8 (bass + lead)", "pad 1 (new age)", "pad 2 (warm)", "pad 3 (polysynth)", "pad 4 (choir)", "pad 5 (bowed)", "pad 6 (metallic)", "pad 7 (halo)", "pad 8 (sweep)", "fx 1 (rain)", "fx 2 (soundtrack)", "fx 3 (crystal)", "fx 4 (atmosphere)", "fx 5 (brightness)", "fx 6 (goblins)", "fx 7 (echoes)", "fx 8 (sci-fi)", "sitar", "banjo", "shamisen", "koto", "kalimba", "bag pipe", "fiddle", "shanai", "tinkle bell", "agogo", "steel drums", "woodblock", "taiko drum", "melodic tom", "synth drum", "reverse cymbal", "guitar fret noise", "breath noise", "seashore", "bird tweet", "telephone ring", "helicopter", "applause", "gunshot"];
+let instrumentByPatchID = ["acoustic grand piano", "bright acoustic piano", "electric grand piano", "honky-tonk piano", "electric piano 1", "electric piano 2", "harpsichord", "clavi", "celesta", "glockenspiel", "music box", "vibraphone", "marimba", "xylophone", "tubular bells", "dulcimer", "drawbar organ", "percussive organ", "rock organ", "church organ", "reed organ", "accordion", "harmonica", "tango accordion", "acoustic guitar (nylon)", "acoustic guitar (steel)", "electric guitar (jazz)", "electric guitar (clean)", "electric guitar (muted)", "overdriven guitar", "distortion guitar", "guitar harmonics", "acoustic bass", "electric bass (finger)", "electric bass (pick)", "fretless bass", "slap bass 1", "slap bass 2", "synth bass 1", "synth bass 2", "violin", "viola", "cello", "contrabass", "tremolo strings", "pizzicato strings", "orchestral harp", "timpani", "string ensemble 1", "string ensemble 2", "synthstrings 1", "synthstrings 2", "choir aahs", "voice oohs", "synth voice", "orchestra hit", "trumpet", "trombone", "tuba", "muted trumpet", "french horn", "brass section", "synthbrass 1", "synthbrass 2", "soprano sax", "alto sax", "tenor sax", "baritone sax", "oboe", "english horn", "bassoon", "clarinet", "piccolo", "flute", "recorder", "pan flute", "blown bottle", "shakuhachi", "whistle", "ocarina", "lead 1 (square)", "lead 2 (sawtooth)", "lead 3 (calliope)", "lead 4 (chiff)", "lead 5 (charang)", "lead 6 (voice)", "lead 7 (fifths)", "lead 8 (bass + lead)", "pad 1 (new age)", "pad 2 (warm)", "pad 3 (polysynth)", "pad 4 (choir)", "pad 5 (bowed)", "pad 6 (metallic)", "pad 7 (halo)", "pad 8 (sweep)", "fx 1 (rain)", "fx 2 (soundtrack)", "fx 3 (crystal)", "fx 4 (atmosphere)", "fx 5 (brightness)", "fx 6 (goblins)", "fx 7 (echoes)", "fx 8 (sci-fi)", "sitar", "banjo", "shamisen", "koto", "kalimba", "bag pipe", "fiddle", "shanai", "tinkle bell", "agogo", "steel drums", "woodblock", "taiko drum", "melodic tom", "synth drum", "reverse cymbal", "guitar fret noise", "breath noise", "seashore", "bird tweet", "telephone ring", "helicopter", "applause", "gunshot"];
 
-var instrumentFamilyByID = ["piano", "chromatic percussion", "organ", "guitar", "bass", "strings", "ensemble", "brass", "reed", "pipe", "synth lead", "synth pad", "synth effects", "ethnic", "percussive", "sound effects"];
+let instrumentFamilyByID = ["piano", "chromatic percussion", "organ", "guitar", "bass", "strings", "ensemble", "brass", "reed", "pipe", "synth lead", "synth pad", "synth effects", "ethnic", "percussive", "sound effects"];
 
-var drumKitByPatchID = {
+let drumKitByPatchID = {
 	0: "standard kit",
 	8: "room kit",
 	16: "power kit",
@@ -135,23 +135,23 @@ function isString(val) {
 	return typeof val === 'string';
 }
 
-var isPitch = function () {
-	var regexp = /^([a-g]{1}(?:b|#|x|bb)?)(-?[0-9]+)/i;
+let isPitch = function () {
+	let regexp = /^([a-g]{1}(?:b|#|x|bb)?)(-?[0-9]+)/i;
 	return function (val) {
 		return isString(val) && regexp.test(val);
 	};
 }();
 
 function midiToPitch(midi) {
-	var scaleIndexToNote = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
-	var octave = Math.floor(midi / 12) - 1;
-	var note = midi % 12;
+	let scaleIndexToNote = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+	let octave = Math.floor(midi / 12) - 1;
+	let note = midi % 12;
 	return scaleIndexToNote[note] + octave;
 }
 
-var pitchToMidi = function () {
-	var regexp = /^([a-g]{1}(?:b|#|x|bb)?)(-?[0-9]+)/i;
-	var noteToScaleIndex = {
+let pitchToMidi = function () {
+	let regexp = /^([a-g]{1}(?:b|#|x|bb)?)(-?[0-9]+)/i;
+	let noteToScaleIndex = {
 		"cbb": -2, "cb": -1, "c": 0, "c#": 1, "cx": 2,
 		"dbb": 0, "db": 1, "d": 2, "d#": 3, "dx": 4,
 		"ebb": 2, "eb": 3, "e": 4, "e#": 5, "ex": 6,
@@ -161,10 +161,10 @@ var pitchToMidi = function () {
 		"bbb": 9, "bb": 10, "b": 11, "b#": 12, "bx": 13
 	};
 	return function (note) {
-		var split = regexp.exec(note);
-		var pitch = split[1];
-		var octave = split[2];
-		var index = noteToScaleIndex[pitch.toLowerCase()];
+		let split = regexp.exec(note);
+		let pitch = split[1];
+		let octave = split[2];
+		let index = noteToScaleIndex[pitch.toLowerCase()];
 		return index + (parseInt(octave) + 1) * 12;
 	};
 }();
@@ -175,14 +175,14 @@ var pitchToMidi = function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Midi; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_midi_file_parser__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_midi_file_parser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_midi_file_parser__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jsmidgen__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_jsmidgen___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_jsmidgen__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Util__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Track__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Header__ = __webpack_require__(5);
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+/* harmony import */ let __WEBPACK_IMPORTED_MODULE_0_midi_file_parser__ = __webpack_require__(11);
+/* harmony import */ let __WEBPACK_IMPORTED_MODULE_0_midi_file_parser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_midi_file_parser__);
+/* harmony import */ let __WEBPACK_IMPORTED_MODULE_1_jsmidgen__ = __webpack_require__(10);
+/* harmony import */ let __WEBPACK_IMPORTED_MODULE_1_jsmidgen___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_jsmidgen__);
+/* harmony import */ let __WEBPACK_IMPORTED_MODULE_2__Util__ = __webpack_require__(1);
+/* harmony import */ let __WEBPACK_IMPORTED_MODULE_3__Track__ = __webpack_require__(9);
+/* harmony import */ let __WEBPACK_IMPORTED_MODULE_4__Header__ = __webpack_require__(5);
+let _createClass = function () { function defineProperties(target, props) { for (let i = 0; i < props.length; i++) { let descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -196,7 +196,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  * @class The Midi object. Contains tracks and the header info.
  */
 
-var Midi = function () {
+let Midi = function () {
 	_createClass(Midi, null, [{
 		key: 'fromJSON',
 
@@ -208,11 +208,11 @@ var Midi = function () {
    * @returns {Midi}
    */
 		value: function fromJSON(json) {
-			var midi = new Midi();
+			let midi = new Midi();
 
 			midi.header = json.header;
 			json.tracks.forEach(function (track) {
-				var newTrack = __WEBPACK_IMPORTED_MODULE_3__Track__["a" /* Track */].fromJSON(track);
+				let newTrack = __WEBPACK_IMPORTED_MODULE_3__Track__["a" /* Track */].fromJSON(track);
 				midi.tracks.push(newTrack);
 			});
 
@@ -245,13 +245,13 @@ var Midi = function () {
 	_createClass(Midi, [{
 		key: 'load',
 		value: function load(url) {
-			var _this = this;
+			let _this = this;
 
-			var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-			var method = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'GET';
+			let data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+			let method = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'GET';
 
 			return new Promise(function (success, fail) {
-				var request = new XMLHttpRequest();
+				let request = new XMLHttpRequest();
 				request.open(method, url);
 				request.responseType = 'arraybuffer';
 				// decode asynchronously
@@ -276,14 +276,14 @@ var Midi = function () {
 	}, {
 		key: 'decode',
 		value: function decode(bytes) {
-			var _this2 = this;
+			let _this2 = this;
 
 			if (bytes instanceof ArrayBuffer) {
-				var byteArray = new Uint8Array(bytes);
+				let byteArray = new Uint8Array(bytes);
 				bytes = String.fromCharCode.apply(null, byteArray);
 			}
 
-			var midiData = __WEBPACK_IMPORTED_MODULE_0_midi_file_parser__(bytes);
+			let midiData = __WEBPACK_IMPORTED_MODULE_0_midi_file_parser__(bytes);
 
 			this.header = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__Header__["a" /* parseHeader */])(midiData);
 
@@ -292,11 +292,11 @@ var Midi = function () {
 
 			midiData.tracks.forEach(function (trackData, i) {
 
-				var track = new __WEBPACK_IMPORTED_MODULE_3__Track__["a" /* Track */]();
+				let track = new __WEBPACK_IMPORTED_MODULE_3__Track__["a" /* Track */]();
 				track.id = i;
 				_this2.tracks.push(track);
 
-				var absoluteTime = 0;
+				let absoluteTime = 0;
 				trackData.forEach(function (event) {
 					absoluteTime += __WEBPACK_IMPORTED_MODULE_2__Util__["a" /* ticksToSeconds */](event.deltaTime, _this2.header);
 					if (event.type === 'meta' && event.subtype === 'trackName') {
@@ -336,18 +336,18 @@ var Midi = function () {
 	}, {
 		key: 'encode',
 		value: function encode() {
-			var _this3 = this;
+			let _this3 = this;
 
-			var output = new __WEBPACK_IMPORTED_MODULE_1_jsmidgen__["File"]({
+			let output = new __WEBPACK_IMPORTED_MODULE_1_jsmidgen__["File"]({
 				ticks: this.header.PPQ
 			});
 
-			var firstEmptyTrack = this.tracks.filter(function (track) {
+			let firstEmptyTrack = this.tracks.filter(function (track) {
 				return !track.length;
 			})[0];
 
 			if (this.header.name && !(firstEmptyTrack && firstEmptyTrack.name === this.header.name)) {
-				var track = output.addTrack();
+				let track = output.addTrack();
 				track.addEvent(new __WEBPACK_IMPORTED_MODULE_1_jsmidgen__["MetaEvent"]({
 					time: 0,
 					type: __WEBPACK_IMPORTED_MODULE_1_jsmidgen__["MetaEvent"].TRACK_NAME,
@@ -356,7 +356,7 @@ var Midi = function () {
 			}
 
 			this.tracks.forEach(function (track) {
-				var trackEncoder = output.addTrack();
+				let trackEncoder = output.addTrack();
 				trackEncoder.setTempo(_this3.bpm);
 				track.encode(trackEncoder, _this3.header);
 			});
@@ -371,9 +371,9 @@ var Midi = function () {
 	}, {
 		key: 'toArray',
 		value: function toArray() {
-			var encodedStr = this.encode();
-			var buffer = new Array(encodedStr.length);
-			for (var i = 0; i < encodedStr.length; i++) {
+			let encodedStr = this.encode();
+			let buffer = new Array(encodedStr.length);
+			for (let i = 0; i < encodedStr.length; i++) {
 				buffer[i] = encodedStr.charCodeAt(i);
 			}
 			return buffer;
@@ -387,7 +387,7 @@ var Midi = function () {
 	}, {
 		key: 'toJSON',
 		value: function toJSON() {
-			var ret = {
+			let ret = {
 				header: this.header,
 				startTime: this.startTime,
 				duration: this.duration,
@@ -410,7 +410,7 @@ var Midi = function () {
 	}, {
 		key: 'track',
 		value: function track(name) {
-			var track = new __WEBPACK_IMPORTED_MODULE_3__Track__["a" /* Track */](name);
+			let track = new __WEBPACK_IMPORTED_MODULE_3__Track__["a" /* Track */](name);
 			this.tracks.push(track);
 			return track;
 		}
@@ -444,10 +444,10 @@ var Midi = function () {
 	}, {
 		key: 'slice',
 		value: function slice() {
-			var startTime = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-			var endTime = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.duration;
+			let startTime = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+			let endTime = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.duration;
 
-			var midi = new Midi();
+			let midi = new Midi();
 			midi.header = this.header;
 			midi.tracks = this.tracks.map(function (t) {
 				return t.slice(startTime, endTime);
@@ -463,7 +463,7 @@ var Midi = function () {
 	}, {
 		key: 'startTime',
 		get: function get() {
-			var startTimes = this.tracks.map(function (t) {
+			let startTimes = this.tracks.map(function (t) {
 				return t.startTime;
 			});
 
@@ -483,10 +483,10 @@ var Midi = function () {
 			return this.header.bpm;
 		},
 		set: function set(bpm) {
-			var prevTempo = this.header.bpm;
+			let prevTempo = this.header.bpm;
 			this.header.bpm = bpm;
 			//adjust the timing of all the notes
-			var ratio = prevTempo / bpm;
+			let ratio = prevTempo / bpm;
 			this.tracks.forEach(function (track) {
 				return track.scale(ratio);
 			});
@@ -514,7 +514,7 @@ var Midi = function () {
 	}, {
 		key: 'duration',
 		get: function get() {
-			var durations = this.tracks.map(function (t) {
+			let durations = this.tracks.map(function (t) {
 				return t.duration;
 			});
 
@@ -539,21 +539,21 @@ var Midi = function () {
  * Return the index of the element at or before the given time
  */
 function findElement(array, time) {
-	var beginning = 0;
-	var len = array.length;
-	var end = len;
+	let beginning = 0;
+	let len = array.length;
+	let end = len;
 	if (len > 0 && array[len - 1].time <= time) {
 		return len - 1;
 	}
 	while (beginning < end) {
 		// calculate the midpoint for roughly equal partition
-		var midPoint = Math.floor(beginning + (end - beginning) / 2);
-		var event = array[midPoint];
-		var nextEvent = array[midPoint + 1];
+		let midPoint = Math.floor(beginning + (end - beginning) / 2);
+		let event = array[midPoint];
+		let nextEvent = array[midPoint + 1];
 		if (event.time === time) {
 			//choose the last one that has the same time
-			for (var i = midPoint; i < array.length; i++) {
-				var testEvent = array[i];
+			for (let i = midPoint; i < array.length; i++) {
+				let testEvent = array[i];
 				if (testEvent.time === time) {
 					midPoint = i;
 				}
@@ -581,7 +581,7 @@ function findElement(array, time) {
  */
 function BinaryInsert(array, event) {
 	if (array.length) {
-		var index = findElement(array, event.time);
+		let index = findElement(array, event.time);
 		array.splice(index + 1, 0, event);
 	} else {
 		array.push(event);
@@ -596,11 +596,11 @@ function BinaryInsert(array, event) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Control; });
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+let _createClass = function () { function defineProperties(target, props) { for (let i = 0; i < props.length; i++) { let descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var channelNames = {
+let channelNames = {
 	"1": "modulationWheel",
 	"2": "breath",
 	"4": "footController",
@@ -616,7 +616,7 @@ var channelNames = {
 	"84": "portamentoContro"
 };
 
-var Control = function () {
+let Control = function () {
 	function Control(number, time, value) {
 		_classCallCheck(this, Control);
 
@@ -660,13 +660,13 @@ var Control = function () {
  *  @return  {Object}
  */
 function parseHeader(midiJson) {
-	var ret = {
+	let ret = {
 		PPQ: midiJson.header.ticksPerBeat
 	};
-	for (var i = 0; i < midiJson.tracks.length; i++) {
-		var track = midiJson.tracks[i];
-		for (var j = 0; j < track.length; j++) {
-			var datum = track[j];
+	for (let i = 0; i < midiJson.tracks.length; i++) {
+		let track = midiJson.tracks[i];
+		for (let j = 0; j < track.length; j++) {
+			let datum = track[j];
 			if (datum.type === "meta") {
 				if (datum.subtype === "timeSignature") {
 					ret.timeSignature = [datum.numerator, datum.denominator];
@@ -692,9 +692,9 @@ function parseHeader(midiJson) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Merge; });
 
 function hasMoreValues(arrays, positions) {
-	for (var i = 0; i < arrays.length; i++) {
-		var arr = arrays[i];
-		var pos = positions[i];
+	for (let i = 0; i < arrays.length; i++) {
+		let arr = arrays[i];
+		let pos = positions[i];
 		if (arr.length > pos) {
 			return true;
 		}
@@ -703,11 +703,11 @@ function hasMoreValues(arrays, positions) {
 }
 
 function getLowestAtPosition(arrays, positions, encoders) {
-	var lowestIndex = 0;
-	var lowestValue = Infinity;
-	for (var i = 0; i < arrays.length; i++) {
-		var arr = arrays[i];
-		var pos = positions[i];
+	let lowestIndex = 0;
+	let lowestValue = Infinity;
+	for (let i = 0; i < arrays.length; i++) {
+		let arr = arrays[i];
+		let pos = positions[i];
 		if (arr[pos] && arr[pos].time < lowestValue) {
 			lowestIndex = i;
 			lowestValue = arr[pos].time;
@@ -724,18 +724,18 @@ function getLowestAtPosition(arrays, positions, encoders) {
  * @param {...Array|Function} args
  */
 function Merge() {
-	for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	for (let _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
 		args[_key] = arguments[_key];
 	}
 
-	var arrays = args.filter(function (v, i) {
+	let arrays = args.filter(function (v, i) {
 		return i % 2 === 0;
 	});
-	var positions = new Uint32Array(arrays.length);
-	var encoders = args.filter(function (v, i) {
+	let positions = new Uint32Array(arrays.length);
+	let encoders = args.filter(function (v, i) {
 		return i % 2 === 1;
 	});
-	var output = [];
+	let output = [];
 	while (hasMoreValues(arrays, positions)) {
 		getLowestAtPosition(arrays, positions, encoders);
 	}
@@ -753,8 +753,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (immutable) */ __webpack_exports__["load"] = load;
 /* harmony export (immutable) */ __webpack_exports__["create"] = create;
 /* harmony export (immutable) */ __webpack_exports__["fromJSON"] = fromJSON;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Midi__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__instrumentMaps__ = __webpack_require__(0);
+/* harmony import */ let __WEBPACK_IMPORTED_MODULE_0__Midi__ = __webpack_require__(2);
+/* harmony import */ let __WEBPACK_IMPORTED_MODULE_1__instrumentMaps__ = __webpack_require__(0);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "instrumentByPatchID", function() { return __WEBPACK_IMPORTED_MODULE_1__instrumentMaps__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "instrumentFamilyByID", function() { return __WEBPACK_IMPORTED_MODULE_1__instrumentMaps__["b"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "drumKitByPatchID", function() { return __WEBPACK_IMPORTED_MODULE_1__instrumentMaps__["c"]; });
@@ -810,7 +810,7 @@ function parse(fileBlob) {
  *  @returns {Promise} A promise which is invoked with the returned Midi object
  */
 function load(url, callback) {
-  var promise = new __WEBPACK_IMPORTED_MODULE_0__Midi__["a" /* Midi */]().load(url);
+  let promise = new __WEBPACK_IMPORTED_MODULE_0__Midi__["a" /* Midi */]().load(url);
   if (callback) {
     promise.then(callback);
   }
@@ -840,14 +840,14 @@ function fromJSON(json) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Note; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Util__ = __webpack_require__(1);
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+/* harmony import */ let __WEBPACK_IMPORTED_MODULE_0__Util__ = __webpack_require__(1);
+let _createClass = function () { function defineProperties(target, props) { for (let i = 0; i < props.length; i++) { let descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 
 
-var Note = function () {
+let Note = function () {
 	_createClass(Note, null, [{
 		key: 'fromJSON',
 
@@ -858,14 +858,14 @@ var Note = function () {
    * @returns {Note}
    */
 		value: function fromJSON(json) {
-			var note = new Note(json.midi, json.time, json.duration, json.velocity);
+			let note = new Note(json.midi, json.time, json.duration, json.velocity);
 			return note;
 		}
 	}]);
 
 	function Note(midi, time) {
-		var duration = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-		var velocity = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 1;
+		let duration = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+		let velocity = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 1;
 
 		_classCallCheck(this, Note);
 
@@ -988,12 +988,12 @@ var Note = function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Track; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BinaryInsert__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Control__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Merge__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Note__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__instrumentMaps__ = __webpack_require__(0);
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+/* harmony import */ let __WEBPACK_IMPORTED_MODULE_0__BinaryInsert__ = __webpack_require__(3);
+/* harmony import */ let __WEBPACK_IMPORTED_MODULE_1__Control__ = __webpack_require__(4);
+/* harmony import */ let __WEBPACK_IMPORTED_MODULE_2__Merge__ = __webpack_require__(6);
+/* harmony import */ let __WEBPACK_IMPORTED_MODULE_3__Note__ = __webpack_require__(8);
+/* harmony import */ let __WEBPACK_IMPORTED_MODULE_4__instrumentMaps__ = __webpack_require__(0);
+let _createClass = function () { function defineProperties(target, props) { for (let i = 0; i < props.length; i++) { let descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1003,7 +1003,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
 
-var Track = function () {
+let Track = function () {
 	_createClass(Track, null, [{
 		key: 'fromJSON',
 
@@ -1014,13 +1014,13 @@ var Track = function () {
   	 * @returns {Track}
   	 */
 		value: function fromJSON(json) {
-			var track = new Track(json.name, json.instrumentNumber, json.channelNumber);
+			let track = new Track(json.name, json.instrumentNumber, json.channelNumber);
 
 			track.id = json.id;
 
 			if (json.notes) {
 				json.notes.forEach(function (note) {
-					var newNote = __WEBPACK_IMPORTED_MODULE_3__Note__["a" /* Note */].fromJSON(note);
+					let newNote = __WEBPACK_IMPORTED_MODULE_3__Note__["a" /* Note */].fromJSON(note);
 					track.notes.push(newNote);
 				});
 			}
@@ -1034,8 +1034,8 @@ var Track = function () {
 	}]);
 
 	function Track(name) {
-		var instrumentNumber = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : -1;
-		var channel = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : -1;
+		let instrumentNumber = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : -1;
+		let channel = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : -1;
 
 		_classCallCheck(this, Track);
 
@@ -1073,10 +1073,10 @@ var Track = function () {
 	_createClass(Track, [{
 		key: 'note',
 		value: function note(midi, time) {
-			var duration = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-			var velocity = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 1;
+			let duration = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+			let velocity = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 1;
 
-			var note = new __WEBPACK_IMPORTED_MODULE_3__Note__["a" /* Note */](midi, time, duration, velocity);
+			let note = new __WEBPACK_IMPORTED_MODULE_3__Note__["a" /* Note */](midi, time, duration, velocity);
 			__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__BinaryInsert__["a" /* BinaryInsert */])(this.notes, note);
 			return this;
 		}
@@ -1093,9 +1093,9 @@ var Track = function () {
 	}, {
 		key: 'noteOn',
 		value: function noteOn(midi, time) {
-			var velocity = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
+			let velocity = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
 
-			var note = new __WEBPACK_IMPORTED_MODULE_3__Note__["a" /* Note */](midi, time, 0, velocity);
+			let note = new __WEBPACK_IMPORTED_MODULE_3__Note__["a" /* Note */](midi, time, 0, velocity);
 			__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__BinaryInsert__["a" /* BinaryInsert */])(this.notes, note);
 			return this;
 		}
@@ -1111,8 +1111,8 @@ var Track = function () {
 	}, {
 		key: 'noteOff',
 		value: function noteOff(midi, time) {
-			for (var i = 0; i < this.notes.length; i++) {
-				var note = this.notes[i];
+			for (let i = 0; i < this.notes.length; i++) {
+				let note = this.notes[i];
 				if (note.match(midi) && note.duration === 0) {
 					note.noteOff = time;
 					break;
@@ -1135,7 +1135,7 @@ var Track = function () {
 			if (!this.controlChanges.hasOwnProperty(num)) {
 				this.controlChanges[num] = [];
 			}
-			var cc = new __WEBPACK_IMPORTED_MODULE_1__Control__["a" /* Control */](num, time, value);
+			let cc = new __WEBPACK_IMPORTED_MODULE_1__Control__["a" /* Control */](num, time, value);
 			__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__BinaryInsert__["a" /* BinaryInsert */])(this.controlChanges[num], cc);
 			return this;
 		}
@@ -1198,17 +1198,17 @@ var Track = function () {
 	}, {
 		key: 'slice',
 		value: function slice() {
-			var startTime = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-			var endTime = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.duration;
+			let startTime = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+			let endTime = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.duration;
 
 			// get the index before the startTime
-			var noteStartIndex = Math.max(this.notes.findIndex(function (note) {
+			let noteStartIndex = Math.max(this.notes.findIndex(function (note) {
 				return note.time >= startTime;
 			}), 0);
-			var noteEndIndex = this.notes.findIndex(function (note) {
+			let noteEndIndex = this.notes.findIndex(function (note) {
 				return note.noteOff >= endTime;
 			}) + 1;
-			var track = new Track(this.name);
+			let track = new Track(this.name);
 			track.notes = this.notes.slice(noteStartIndex, noteEndIndex);
 			//shift the start time
 			track.notes.forEach(function (note) {
@@ -1225,15 +1225,15 @@ var Track = function () {
 		key: 'encode',
 		value: function encode(trackEncoder, header) {
 
-			var ticksPerSecond = header.PPQ / (60 / header.bpm);
-			var lastEventTime = 0;
+			let ticksPerSecond = header.PPQ / (60 / header.bpm);
+			let lastEventTime = 0;
 
 			// unset, `channelNumber` defaults to -1, but that's not a valid MIDI channel
-			var channelNumber = Math.max(0, this.channelNumber);
+			let channelNumber = Math.max(0, this.channelNumber);
 
 			function getDeltaTime(time) {
-				var ticks = Math.floor(ticksPerSecond * time);
-				var delta = Math.max(ticks - lastEventTime, 0);
+				let ticks = Math.floor(ticksPerSecond * time);
+				let delta = Math.max(ticks - lastEventTime, 0);
 				lastEventTime = ticks;
 				return delta;
 			}
@@ -1258,7 +1258,7 @@ var Track = function () {
 		key: 'toJSON',
 		value: function toJSON() {
 
-			var ret = {
+			let ret = {
 				startTime: this.startTime,
 				duration: this.duration,
 				length: this.length,
@@ -1292,7 +1292,7 @@ var Track = function () {
 	}, {
 		key: 'noteOns',
 		get: function get() {
-			var noteOns = [];
+			let noteOns = [];
 			this.notes.forEach(function (note) {
 				noteOns.push({
 					time: note.noteOn,
@@ -1313,7 +1313,7 @@ var Track = function () {
 	}, {
 		key: 'noteOffs',
 		get: function get() {
-			var noteOffs = [];
+			let noteOffs = [];
 			this.notes.forEach(function (note) {
 				noteOffs.push({
 					time: note.noteOff,
@@ -1344,7 +1344,7 @@ var Track = function () {
 		key: 'startTime',
 		get: function get() {
 			if (this.notes.length) {
-				var firstNote = this.notes[0];
+				let firstNote = this.notes[0];
 				return firstNote.noteOn;
 			} else {
 				return 0;
@@ -1360,7 +1360,7 @@ var Track = function () {
 		key: 'duration',
 		get: function get() {
 			if (this.notes.length) {
-				var lastNote = this.notes[this.notes.length - 1];
+				let lastNote = this.notes[this.notes.length - 1];
 				return lastNote.noteOff;
 			} else {
 				return 0;
@@ -1382,7 +1382,7 @@ var Track = function () {
 			}
 		},
 		set: function set(inst) {
-			var index = __WEBPACK_IMPORTED_MODULE_4__instrumentMaps__["a" /* instrumentByPatchID */].indexOf(inst);
+			let index = __WEBPACK_IMPORTED_MODULE_4__instrumentMaps__["a" /* instrumentByPatchID */].indexOf(inst);
 			if (index !== -1) {
 				this.instrumentNumber = index;
 			}
@@ -1425,19 +1425,19 @@ var Track = function () {
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(module) {var Midi = {};
+/* WEBPACK let INJECTION */(function(module) {let Midi = {};
 
 (function(exported) {
 
-	var DEFAULT_VOLUME   = exported.DEFAULT_VOLUME   = 90;
-	var DEFAULT_DURATION = exported.DEFAULT_DURATION = 128;
-	var DEFAULT_CHANNEL  = exported.DEFAULT_CHANNEL  = 0;
+	let DEFAULT_VOLUME   = exported.DEFAULT_VOLUME   = 90;
+	let DEFAULT_DURATION = exported.DEFAULT_DURATION = 128;
+	let DEFAULT_CHANNEL  = exported.DEFAULT_CHANNEL  = 0;
 
 	/* ******************************************************************
 	 * Utility functions
 	 ****************************************************************** */
 
-	var Util = {
+	let Util = {
 
 		midi_letter_pitches: { a:21, b:23, c:12, d:14, e:16, f:17, g:19 },
 
@@ -1450,8 +1450,8 @@ var Track = function () {
 		 * name.
 		 */
 		midiPitchFromNote: function(n) {
-			var matches = /([a-g])(#+|b+)?([0-9]+)$/i.exec(n);
-			var note = matches[1].toLowerCase(), accidental = matches[2] || '', octave = parseInt(matches[3], 10);
+			let matches = /([a-g])(#+|b+)?([0-9]+)$/i.exec(n);
+			let note = matches[1].toLowerCase(), accidental = matches[2] || '', octave = parseInt(matches[3], 10);
 			return (12 * octave) + Util.midi_letter_pitches[note] + (accidental.substr(0,1)=='#'?1:-1) * accidental.length;
 		},
 
@@ -1485,7 +1485,7 @@ var Track = function () {
 		 * @returns {string} The resulting symbolic note name.
 		 */
 		noteFromMidiPitch: function(n, returnFlattened) {
-			var octave = 0, noteNum = n, noteName, returnFlattened = returnFlattened || false;
+			let octave = 0, noteNum = n, noteName, returnFlattened = returnFlattened || false;
 			if (n > 23) {
 				// noteNum is on octave 1 or more
 				octave = Math.floor(n/12) - 1;
@@ -1509,8 +1509,8 @@ var Track = function () {
 		 * @returns {number} The number of microseconds per quarter note.
 		 */
 		mpqnFromBpm: function(bpm) {
-			var mpqn = Math.floor(60000000 / bpm);
-			var ret=[];
+			let mpqn = Math.floor(60000000 / bpm);
+			let ret=[];
 			do {
 				ret.unshift(mpqn & 0xFF);
 				mpqn >>= 8;
@@ -1528,10 +1528,10 @@ var Track = function () {
 		 * @returns {number} A number in beats per minute.
 		 */
 		bpmFromMpqn: function(mpqn) {
-			var m = mpqn;
+			let m = mpqn;
 			if (typeof mpqn[0] != 'undefined') {
 				m = 0;
-				for (var i=0, l=mpqn.length-1; l >= 0; ++i, --l) {
+				for (let i=0, l=mpqn.length-1; l >= 0; ++i, --l) {
 					m |= mpqn[i] << l;
 				}
 			}
@@ -1564,9 +1564,9 @@ var Track = function () {
 				while ((str.length / 2) < finalBytes) { str = "0" + str; }
 			}
 
-			var bytes = [];
-			for (var i=str.length-1; i>=0; i = i-2) {
-				var chars = i === 0 ? str[i] : str[i-1] + str[i];
+			let bytes = [];
+			for (let i=str.length-1; i>=0; i = i-2) {
+				let chars = i === 0 ? str[i] : str[i-1] + str[i];
 				bytes.unshift(parseInt(chars, 16));
 			}
 
@@ -1582,14 +1582,14 @@ var Track = function () {
 		 * @returns {number} Array of bytes that form the MIDI time value.
 		 */
 		translateTickTime: function(ticks) {
-			var buffer = ticks & 0x7F;
+			let buffer = ticks & 0x7F;
 
 			while (ticks = ticks >> 7) {
 				buffer <<= 8;
 				buffer |= ((ticks & 0x7F) | 0x80);
 			}
 
-			var bList = [];
+			let bList = [];
 			while (true) {
 				bList.push(buffer & 0xff);
 
@@ -1615,7 +1615,7 @@ var Track = function () {
 	 *  - param1 [required number] - First event parameter.
 	 *  - param2 [optional number] - Second event parameter.
 	 */
-	var MidiEvent = function(params) {
+	let MidiEvent = function(params) {
 		if (!this) return new MidiEvent(params);
 		if (params &&
 				(params.type    !== null || params.type    !== undefined) &&
@@ -1701,9 +1701,9 @@ var Track = function () {
 	 * @returns {Array} The array of serialized bytes.
 	 */
 	MidiEvent.prototype.toBytes = function() {
-		var byteArray = [];
+		let byteArray = [];
 
-		var typeChannelByte = this.type | (this.channel & 0xF);
+		let typeChannelByte = this.type | (this.channel & 0xF);
 
 		byteArray.push.apply(byteArray, this.time);
 		byteArray.push(typeChannelByte);
@@ -1728,9 +1728,9 @@ var Track = function () {
 	 *  - type [required number] - Type of event.
 	 *  - data [optional array|string] - Event data.
 	 */
-	var MetaEvent = function(params) {
+	let MetaEvent = function(params) {
 		if (!this) return new MetaEvent(params);
-		var p = params || {};
+		let p = params || {};
 		this.setTime(params.time);
 		this.setType(params.type);
 		this.setData(params.data);
@@ -1791,7 +1791,7 @@ var Track = function () {
 			throw new Error("Type for meta-event not specified.");
 		}
 
-		var byteArray = [];
+		let byteArray = [];
 		byteArray.push.apply(byteArray, this.time);
 		byteArray.push(0xFF, this.type);
 
@@ -1805,7 +1805,7 @@ var Track = function () {
 		} else if (this.data !== null && this.data !== undefined) {
 			// assume string; may be a bad assumption
 			byteArray.push(this.data.length);
-			var dataBytes = this.data.split('').map(function(x){ return x.charCodeAt(0) });
+			let dataBytes = this.data.split('').map(function(x){ return x.charCodeAt(0) });
 			byteArray.push.apply(byteArray, dataBytes);
 		} else {
 			byteArray.push(0);
@@ -1824,9 +1824,9 @@ var Track = function () {
 	 * Parameters include:
 	 *  - events [optional array] - Array of events for the track.
 	 */
-	var Track = function(config) {
+	let Track = function(config) {
 		if (!this) return new Track(config);
-		var c = config || {};
+		let c = config || {};
 		this.events = c.events || [];
 	};
 
@@ -1981,13 +1981,13 @@ var Track = function () {
 	 * @returns {Array} The array of serialized bytes.
 	 */
 	Track.prototype.toBytes = function() {
-		var trackLength = 0;
-		var eventBytes = [];
-		var startBytes = Track.START_BYTES;
-		var endBytes   = Track.END_BYTES;
+		let trackLength = 0;
+		let eventBytes = [];
+		let startBytes = Track.START_BYTES;
+		let endBytes   = Track.END_BYTES;
 
-		var addEventBytes = function(event) {
-			var bytes = event.toBytes();
+		let addEventBytes = function(event) {
+			let bytes = event.toBytes();
 			trackLength += bytes.length;
 			eventBytes.push.apply(eventBytes, bytes);
 		};
@@ -2000,7 +2000,7 @@ var Track = function () {
 
 		// Makes sure that track length will fill up 4 bytes with 0s in case
 		// the length is less than that (the usual case).
-		var lengthBytes = Util.str2Bytes(trackLength.toString(16), 4);
+		let lengthBytes = Util.str2Bytes(trackLength.toString(16), 4);
 
 		return startBytes.concat(lengthBytes, eventBytes, endBytes);
 	};
@@ -2017,10 +2017,10 @@ var Track = function () {
 	 *    Must be 1-32767.
 	 *  - tracks [optional array] - Track data.
 	 */
-	var File = function(config){
+	let File = function(config){
 		if (!this) return new File(config);
 
-		var c = config || {};
+		let c = config || {};
 		if (c.ticks) {
 			if (typeof c.ticks !== 'number') {
 				throw new Error('Ticks per beat must be a number!');
@@ -2063,10 +2063,10 @@ var Track = function () {
 	 * @returns {Array} The array of serialized bytes.
 	 */
 	File.prototype.toBytes = function() {
-		var trackCount = this.tracks.length.toString(16);
+		let trackCount = this.tracks.length.toString(16);
 
 		// prepare the file header
-		var bytes = File.HDR_CHUNKID + File.HDR_CHUNK_SIZE;
+		let bytes = File.HDR_CHUNKID + File.HDR_CHUNK_SIZE;
 
 		// set Midi type based on number of tracks
 		if (parseInt(trackCount, 16) > 1) {
@@ -2108,7 +2108,7 @@ if (typeof module != 'undefined' && module !== null) {
 	this.Midi = Midi;
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)(module)))
+/* WEBPACK let INJECTION */}.call(exports, __webpack_require__(12)(module)))
 
 /***/ }),
 /* 11 */
@@ -2124,8 +2124,8 @@ module.exports = function(file){
 
 function MidiFile(data) {
 	function readChunk(stream) {
-		var id = stream.read(4);
-		var length = stream.readInt32();
+		let id = stream.read(4);
+		let length = stream.readInt32();
 		return {
 			'id': id,
 			'length': length,
@@ -2133,19 +2133,19 @@ function MidiFile(data) {
 		};
 	}
 
-	var lastEventTypeByte;
+	let lastEventTypeByte;
 
 	function readEvent(stream) {
-		var event = {};
+		let event = {};
 		event.deltaTime = stream.readVarInt();
-		var eventTypeByte = stream.readInt8();
+		let eventTypeByte = stream.readInt8();
 		if ((eventTypeByte & 0xf0) == 0xf0) {
 			/* system / meta event */
 			if (eventTypeByte == 0xff) {
 				/* meta event */
 				event.type = 'meta';
-				var subtypeByte = stream.readInt8();
-				var length = stream.readVarInt();
+				let subtypeByte = stream.readInt8();
+				let length = stream.readVarInt();
 				switch(subtypeByte) {
 					case 0x00:
 						event.subtype = 'sequenceNumber';
@@ -2201,7 +2201,7 @@ function MidiFile(data) {
 					case 0x54:
 						event.subtype = 'smpteOffset';
 						if (length != 5) throw "Expected length for smpteOffset event is 5, got " + length;
-						var hourByte = stream.readInt8();
+						let hourByte = stream.readInt8();
 						event.frameRate = {
 							0x00: 24, 0x20: 25, 0x40: 29, 0x60: 30
 						}[hourByte & 0x60];
@@ -2239,12 +2239,12 @@ function MidiFile(data) {
 				return event;
 			} else if (eventTypeByte == 0xf0) {
 				event.type = 'sysEx';
-				var length = stream.readVarInt();
+				let length = stream.readVarInt();
 				event.data = stream.read(length);
 				return event;
 			} else if (eventTypeByte == 0xf7) {
 				event.type = 'dividedSysEx';
-				var length = stream.readVarInt();
+				let length = stream.readVarInt();
 				event.data = stream.read(length);
 				return event;
 			} else {
@@ -2252,7 +2252,7 @@ function MidiFile(data) {
 			}
 		} else {
 			/* channel event */
-			var param1;
+			let param1;
 			if ((eventTypeByte & 0x80) == 0) {
 				/* running status - reuse lastEventTypeByte as the event type.
 					eventTypeByte is actually the first parameter
@@ -2263,7 +2263,7 @@ function MidiFile(data) {
 				param1 = stream.readInt8();
 				lastEventTypeByte = eventTypeByte;
 			}
-			var eventType = eventTypeByte >> 4;
+			let eventType = eventTypeByte >> 4;
 			event.channel = eventTypeByte & 0x0f;
 			event.type = 'channel';
 			switch (eventType) {
@@ -2316,14 +2316,14 @@ function MidiFile(data) {
 	}
 
 	stream = Stream(data);
-	var headerChunk = readChunk(stream);
+	let headerChunk = readChunk(stream);
 	if (headerChunk.id != 'MThd' || headerChunk.length != 6) {
 		throw "Bad .mid file - header not found";
 	}
-	var headerStream = Stream(headerChunk.data);
-	var formatType = headerStream.readInt16();
-	var trackCount = headerStream.readInt16();
-	var timeDivision = headerStream.readInt16();
+	let headerStream = Stream(headerChunk.data);
+	let formatType = headerStream.readInt16();
+	let trackCount = headerStream.readInt16();
+	let timeDivision = headerStream.readInt16();
 
 	if (timeDivision & 0x8000) {
 		throw "Expressing time division in SMTPE frames is not supported yet"
@@ -2331,21 +2331,21 @@ function MidiFile(data) {
 		ticksPerBeat = timeDivision;
 	}
 
-	var header = {
+	let header = {
 		'formatType': formatType,
 		'trackCount': trackCount,
 		'ticksPerBeat': ticksPerBeat
 	}
-	var tracks = [];
-	for (var i = 0; i < header.trackCount; i++) {
+	let tracks = [];
+	for (let i = 0; i < header.trackCount; i++) {
 		tracks[i] = [];
-		var trackChunk = readChunk(stream);
+		let trackChunk = readChunk(stream);
 		if (trackChunk.id != 'MTrk') {
 			throw "Unexpected chunk - expected MTrk, got "+ trackChunk.id;
 		}
-		var trackStream = Stream(trackChunk.data);
+		let trackStream = Stream(trackChunk.data);
 		while (!trackStream.eof()) {
-			var event = readEvent(trackStream);
+			let event = readEvent(trackStream);
 			tracks[i].push(event);
 			//console.log(event);
 		}
@@ -2359,17 +2359,17 @@ function MidiFile(data) {
 
 /* Wrapper for accessing strings through sequential reads */
 function Stream(str) {
-	var position = 0;
+	let position = 0;
 
 	function read(length) {
-		var result = str.substr(position, length);
+		let result = str.substr(position, length);
 		position += length;
 		return result;
 	}
 
 	/* read a big-endian 32-bit integer */
 	function readInt32() {
-		var result = (
+		let result = (
 			(str.charCodeAt(position) << 24)
 			+ (str.charCodeAt(position + 1) << 16)
 			+ (str.charCodeAt(position + 2) << 8)
@@ -2380,7 +2380,7 @@ function Stream(str) {
 
 	/* read a big-endian 16-bit integer */
 	function readInt16() {
-		var result = (
+		let result = (
 			(str.charCodeAt(position) << 8)
 			+ str.charCodeAt(position + 1));
 		position += 2;
@@ -2389,7 +2389,7 @@ function Stream(str) {
 
 	/* read an 8-bit integer */
 	function readInt8(signed) {
-		var result = str.charCodeAt(position);
+		let result = str.charCodeAt(position);
 		if (signed && result > 127) result -= 256;
 		position += 1;
 		return result;
@@ -2404,9 +2404,9 @@ function Stream(str) {
 		with top bit set to signify that another byte follows)
 	*/
 	function readVarInt() {
-		var result = 0;
+		let result = 0;
 		while (true) {
-			var b = readInt8();
+			let b = readInt8();
 			if (b & 0x80) {
 				result += (b & 0x7f);
 				result <<= 7;

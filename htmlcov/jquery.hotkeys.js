@@ -38,7 +38,7 @@
 			return;
 		}
 
-		var origHandler = handleObj.handler,
+		let origHandler = handleObj.handler,
 			keys = handleObj.data.toLowerCase().split(" ");
 
 		handleObj.handler = function( event ) {
@@ -49,7 +49,7 @@
 			}
 
 			// Keypress represents characters, not special keys
-			var special = event.type !== "keypress" && jQuery.hotkeys.specialKeys[ event.which ],
+			let special = event.type !== "keypress" && jQuery.hotkeys.specialKeys[ event.which ],
 				character = String.fromCharCode( event.which ).toLowerCase(),
 				key, modif = "", possible = {};
 
@@ -84,7 +84,7 @@
 				}
 			}
 
-			for ( var i = 0, l = keys.length; i < l; i++ ) {
+			for ( let i = 0, l = keys.length; i < l; i++ ) {
 				if ( possible[ keys[i] ] ) {
 					return origHandler.apply( this, arguments );
 				}

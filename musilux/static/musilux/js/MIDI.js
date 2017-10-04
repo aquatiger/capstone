@@ -13,13 +13,13 @@ if (typeof MIDI === 'undefined') MIDI = {};
 
 (function(root) { 'use strict';
 
-	var supports = {}; // object of supported file types
-	var pending = 0; // pending file types to process
-	var canPlayThrough = function (src) { // check whether format plays through
+	let supports = {}; // object of supported file types
+	let pending = 0; // pending file types to process
+	let canPlayThrough = function (src) { // check whether format plays through
 		pending ++;
-		var body = document.body;
-		var audio = new Audio();
-		var mime = src.split(';')[0];
+		let body = document.body;
+		let audio = new Audio();
+		let mime = src.split(';')[0];
 		audio.id = 'audio';
 		audio.setAttribute('preload', 'auto');
 		audio.setAttribute('audiobuffer', true);
@@ -40,12 +40,12 @@ if (typeof MIDI === 'undefined') MIDI = {};
 	root.audioDetect = function(onsuccess) {
 		/// detect jazz-midi plugin
 		if (navigator.requestMIDIAccess) {
-			var isNative = Function.prototype.toString.call(navigator.requestMIDIAccess).indexOf('[native code]');
+			let isNative = Function.prototype.toString.call(navigator.requestMIDIAccess).indexOf('[native code]');
 			if (isNative) { // has native midiapi support
 				supports['webmidi'] = true;
 			} else { // check for jazz plugin midiapi support
-				for (var n = 0; navigator.plugins.length > n; n ++) {
-					var plugin = navigator.plugins[n];
+				for (let n = 0; navigator.plugins.length > n; n ++) {
+					let plugin = navigator.plugins[n];
 					if (plugin.name.indexOf('Jazz-Plugin') >= 0) {
 						supports['webmidi'] = true;
 					}
@@ -66,15 +66,15 @@ if (typeof MIDI === 'undefined') MIDI = {};
 		}
 
 		/// check whether canPlayType is supported
-		var audio = new Audio();
+		let audio = new Audio();
 		if (typeof(audio.canPlayType) === 'undefined') {
 			return onsuccess(supports);
 		}
 
 		/// see what we can learn from the browser
-		var vorbis = audio.canPlayType('audio/ogg; codecs="vorbis"');
+		let vorbis = audio.canPlayType('audio/ogg; codecs="vorbis"');
 		vorbis = (vorbis === 'probably' || vorbis === 'maybe');
-		var mpeg = audio.canPlayType('audio/mpeg');
+		let mpeg = audio.canPlayType('audio/mpeg');
 		mpeg = (mpeg === 'probably' || mpeg === 'maybe');
 		// maybe nothing is supported
 		if (!vorbis && !mpeg) {
@@ -87,10 +87,10 @@ if (typeof MIDI === 'undefined') MIDI = {};
 		if (mpeg) canPlayThrough('audio/mpeg;base64,/+MYxAAAAANIAUAAAASEEB/jwOFM/0MM/90b/+RhST//w4NFwOjf///PZu////9lns5GFDv//l9GlUIEEIAAAgIg8Ir/JGq3/+MYxDsLIj5QMYcoAP0dv9HIjUcH//yYSg+CIbkGP//8w0bLVjUP///3Z0x5QCAv/yLjwtGKTEFNRTMuOTeqqqqqqqqqqqqq/+MYxEkNmdJkUYc4AKqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq');
 
 		/// lets find out!
-		var time = (new Date()).getTime();
-		var interval = window.setInterval(function() {
-			var now = (new Date()).getTime();
-			var maxExecution = now - time > 5000;
+		let time = (new Date()).getTime();
+		let interval = window.setInterval(function() {
+			let now = (new Date()).getTime();
+			let maxExecution = now - time > 5000;
 			if (!pending || maxExecution) {
 				window.clearInterval(interval);
 				onsuccess(supports);
@@ -108,20 +108,20 @@ if (typeof MIDI === 'undefined') MIDI = {};
 (function(root) { 'use strict';
 
 	root.GM = (function(arr) {
-		var clean = function(name) {
+		let clean = function(name) {
 			return name.replace(/[^a-z0-9 ]/gi, '').replace(/[ ]/g, '_').toLowerCase();
 		};
-		var res = {
+		let res = {
 			byName: { },
 			byId: { },
 			byCategory: { }
 		};
-		for (var key in arr) {
-			var list = arr[key];
-			for (var n = 0, length = list.length; n < length; n++) {
-				var instrument = list[n];
+		for (let key in arr) {
+			let list = arr[key];
+			for (let n = 0, length = list.length; n < length; n++) {
+				let instrument = list[n];
 				if (!instrument) continue;
-				var num = parseInt(instrument.substr(0, instrument.indexOf(' ')), 10);
+				let num = parseInt(instrument.substr(0, instrument.indexOf(' ')), 10);
 				instrument = instrument.replace(num + ' ', '');
 				res.byId[--num] =
 				res.byName[clean(instrument)] =
@@ -156,12 +156,12 @@ if (typeof MIDI === 'undefined') MIDI = {};
 	/* get/setInstrument
 	--------------------------------------------------- */
 	root.getInstrument = function(channelId) {
-		var channel = root.channels[channelId];
+		let channel = root.channels[channelId];
 		return channel && channel.instrument;
 	};
 
 	root.setInstrument = function(channelId, program, delay) {
-		var channel = root.channels[channelId];
+		let channel = root.channels[channelId];
 		if (delay) {
 			return setTimeout(function() {
 				channel.instrument = program;
@@ -174,12 +174,12 @@ if (typeof MIDI === 'undefined') MIDI = {};
 	/* get/setMono
 	--------------------------------------------------- */
 	root.getMono = function(channelId) {
-		var channel = root.channels[channelId];
+		let channel = root.channels[channelId];
 		return channel && channel.mono;
 	};
 
 	root.setMono = function(channelId, truthy, delay) {
-		var channel = root.channels[channelId];
+		let channel = root.channels[channelId];
 		if (delay) {
 			return setTimeout(function() {
 				channel.mono = truthy;
@@ -192,12 +192,12 @@ if (typeof MIDI === 'undefined') MIDI = {};
 	/* get/setOmni
 	--------------------------------------------------- */
 	root.getOmni = function(channelId) {
-		var channel = root.channels[channelId];
+		let channel = root.channels[channelId];
 		return channel && channel.omni;
 	};
 
 	root.setOmni = function(channelId, truthy) {
-		var channel = root.channels[channelId];
+		let channel = root.channels[channelId];
 		if (delay) {
 			return setTimeout(function() {
 				channel.omni = truthy;
@@ -210,12 +210,12 @@ if (typeof MIDI === 'undefined') MIDI = {};
 	/* get/setSolo
 	--------------------------------------------------- */
 	root.getSolo = function(channelId) {
-		var channel = root.channels[channelId];
+		let channel = root.channels[channelId];
 		return channel && channel.solo;
 	};
 
 	root.setSolo = function(channelId, truthy) {
-		var channel = root.channels[channelId];
+		let channel = root.channels[channelId];
 		if (delay) {
 			return setTimeout(function() {
 				channel.solo = truthy;
@@ -228,8 +228,8 @@ if (typeof MIDI === 'undefined') MIDI = {};
 	/* channels
 	--------------------------------------------------- */
 	root.channels = (function() { // 0 - 15 channels
-		var channels = {};
-		for (var i = 0; i < 16; i++) {
+		let channels = {};
+		for (let i = 0; i < 16; i++) {
 			channels[i] = { // default values
 				instrument: i,
 				pitchBend: 0,
@@ -248,12 +248,12 @@ if (typeof MIDI === 'undefined') MIDI = {};
 	root.noteToKey = {}; // 108 ==  C8
 
 	(function() {
-		var A0 = 0x15; // first note
-		var C8 = 0x6C; // last note
-		var number2key = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
-		for (var n = A0; n <= C8; n++) {
-			var octave = (n - 12) / 12 >> 0;
-			var name = number2key[n % 12] + octave;
+		let A0 = 0x15; // first note
+		let C8 = 0x6C; // last note
+		let number2key = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
+		for (let n = A0; n <= C8; n++) {
+			let octave = (n - 12) / 12 >> 0;
+			let name = number2key[n % 12] + octave;
 			root.keyToNote[name] = n;
 			root.noteToKey[n] = name;
 		}
@@ -307,8 +307,8 @@ MIDI.Player = MIDI.Player || {};
 
 		/// Detect the best type of audio to use
 		root.audioDetect(function(supports) {
-			var hash = window.location.hash;
-			var api = '';
+			let hash = window.location.hash;
+			let api = '';
 
 			/// use the most appropriate plugin if not specified
 			if (supports[opts.api]) {
@@ -326,9 +326,9 @@ MIDI.Player = MIDI.Player || {};
 			if (connect[api]) {
 				/// use audio/ogg when supported
 				if (opts.targetFormat) {
-					var audioFormat = opts.targetFormat;
+					let audioFormat = opts.targetFormat;
 				} else { // use best quality
-					var audioFormat = supports['audio/ogg'] ? 'ogg' : 'mp3';
+					let audioFormat = supports['audio/ogg'] ? 'ogg' : 'mp3';
 				}
 
 				/// load the specified plugin
@@ -349,7 +349,7 @@ MIDI.Player = MIDI.Player || {};
 	*/
 
 	root.loadResource = function(opts) {
-		var instruments = opts.instruments || opts.instrument || 'acoustic_grand_piano';
+		let instruments = opts.instruments || opts.instrument || 'acoustic_grand_piano';
 		///
 		if (typeof instruments !== 'object') {
 			if (instruments || instruments === 0) {
@@ -359,8 +359,8 @@ MIDI.Player = MIDI.Player || {};
 			}
 		}
 		/// convert numeric ids into strings
-		for (var i = 0; i < instruments.length; i ++) {
-			var instrument = instruments[i];
+		for (let i = 0; i < instruments.length; i ++) {
+			let instrument = instruments[i];
 			if (instrument === +instrument) { // is numeric
 				if (root.GM.byId[instrument]) {
 					instruments[i] = root.GM.byId[instrument].id;
@@ -374,7 +374,7 @@ MIDI.Player = MIDI.Player || {};
 		connect[root.__api](opts);
 	};
 
-	var connect = {
+	let connect = {
 		webmidi: function(opts) {
 			// cant wait for this to be standardized!
 			root.WebMIDI.connect(opts);
@@ -391,29 +391,29 @@ MIDI.Player = MIDI.Player || {};
 		}
 	};
 
-	var requestQueue = function(opts, context) {
-		var audioFormat = opts.format;
-		var instruments = opts.instruments;
-		var onprogress = opts.onprogress;
-		var onerror = opts.onerror;
+	let requestQueue = function(opts, context) {
+		let audioFormat = opts.format;
+		let instruments = opts.instruments;
+		let onprogress = opts.onprogress;
+		let onerror = opts.onerror;
 		///
-		var length = instruments.length;
-		var pending = length;
-		var waitForEnd = function() {
+		let length = instruments.length;
+		let pending = length;
+		let waitForEnd = function() {
 			if (!--pending) {
 				onprogress && onprogress('load', 1.0);
 				root[context].connect(opts);
 			}
 		};
 		///
-		for (var i = 0; i < length; i ++) {
-			var instrumentId = instruments[i];
+		for (let i = 0; i < length; i ++) {
+			let instrumentId = instruments[i];
 			if (MIDI.Soundfont[instrumentId]) { // already loaded
 				waitForEnd();
 			} else { // needs to be requested
 				sendRequest(instruments[i], audioFormat, function(evt, progress) {
-					var fileProgress = progress / length;
-					var queueProgress = (length - pending) / length;
+					let fileProgress = progress / length;
+					let queueProgress = (length - pending) / length;
 					onprogress && onprogress('load', fileProgress + queueProgress, instrumentId);
 				}, function() {
 					waitForEnd();
@@ -422,8 +422,8 @@ MIDI.Player = MIDI.Player || {};
 		};
 	};
 
-	var sendRequest = function(instrumentId, audioFormat, onprogress, onsuccess, onerror) {
-		var soundfontPath = root.soundfontUrl + instrumentId + '-' + audioFormat + '.js';
+	let sendRequest = function(instrumentId, audioFormat, onprogress, onsuccess, onerror) {
+		let soundfontPath = root.soundfontUrl + instrumentId + '-' + audioFormat + '.js';
 		if (root.USE_XHR) {
 			root.util.request({
 				url: soundfontPath,
@@ -431,7 +431,7 @@ MIDI.Player = MIDI.Player || {};
 				onerror: onerror,
 				onprogress: onprogress,
 				onsuccess: function(event, responseText) {
-					var script = document.createElement('script');
+					let script = document.createElement('script');
 					script.language = 'javascript';
 					script.type = 'text/javascript';
 					script.text = responseText;
@@ -453,7 +453,7 @@ MIDI.Player = MIDI.Player || {};
 	};
 
 	root.setDefaultPlugin = function(midi) {
-		for (var key in midi) {
+		for (let key in midi) {
 			root[key] = midi[key];
 		}
 	};
@@ -472,7 +472,7 @@ if (typeof MIDI.Player === 'undefined') MIDI.Player = {};
 
 (function() { 'use strict';
 
-var midi = MIDI.Player;
+let midi = MIDI.Player;
 midi.currentTime = 0;
 midi.endTime = 0;
 midi.restart = 0;
@@ -490,7 +490,7 @@ midi.resume = function(onsuccess) {
 };
 
 midi.pause = function() {
-	var tmp = midi.restart;
+	let tmp = midi.restart;
 	stopAudio();
 	midi.restart = tmp;
 };
@@ -516,13 +516,13 @@ midi.clearAnimation = function() {
 };
 
 midi.setAnimation = function(callback) {
-	var currentTime = 0;
-	var tOurTime = 0;
-	var tTheirTime = 0;
+	let currentTime = 0;
+	let tOurTime = 0;
+	let tTheirTime = 0;
 	//
 	midi.clearAnimation();
 	///
-	var frame = function() {
+	let frame = function() {
 		midi.animationFrameId = requestAnimationFrame(frame);
 		///
 		if (midi.endTime === 0) {
@@ -543,13 +543,13 @@ midi.setAnimation = function(callback) {
 			currentTime = midi.currentTime;
 		}
 		///
-		var endTime = midi.endTime;
-		var percent = currentTime / endTime;
-		var total = currentTime / 1000;
-		var minutes = total / 60;
-		var seconds = total - (minutes * 60);
-		var t1 = minutes * 60 + seconds;
-		var t2 = (endTime / 1000);
+		let endTime = midi.endTime;
+		let percent = currentTime / endTime;
+		let total = currentTime / 1000;
+		let minutes = total / 60;
+		let seconds = total - (minutes * 60);
+		let t1 = minutes * 60 + seconds;
+		let t2 = (endTime / 1000);
 		///
 		if (t2 - t1 < -1.0) {
 			return;
@@ -587,25 +587,25 @@ midi.loadMidiFile = function(onsuccess, onprogress, onerror) {
 midi.loadFile = function(file, onsuccess, onprogress, onerror) {
 	midi.stop();
 	if (file.indexOf('base64,') !== -1) {
-		var data = window.atob(file.split(',')[1]);
+		let data = window.atob(file.split(',')[1]);
 		midi.currentData = data;
 		midi.loadMidiFile(onsuccess, onprogress, onerror);
 	} else {
-		var fetch = new XMLHttpRequest();
+		let fetch = new XMLHttpRequest();
 		fetch.open('GET', file);
 		fetch.overrideMimeType('text/plain; charset=x-user-defined');
 		fetch.onreadystatechange = function() {
 			if (this.readyState === 4) {
 				if (this.status === 200) {
-					var t = this.responseText || '';
-					var ff = [];
-					var mx = t.length;
-					var scc = String.fromCharCode;
-					for (var z = 0; z < mx; z++) {
+					let t = this.responseText || '';
+					let ff = [];
+					let mx = t.length;
+					let scc = String.fromCharCode;
+					for (let z = 0; z < mx; z++) {
 						ff[z] = scc(t.charCodeAt(z) & 255);
 					}
 					///
-					var data = ff.join('');
+					let data = ff.join('');
 					midi.currentData = data;
 					midi.loadMidiFile(onsuccess, onprogress, onerror);
 				} else {
@@ -618,14 +618,14 @@ midi.loadFile = function(file, onsuccess, onprogress, onerror) {
 };
 
 midi.getFileInstruments = function() {
-	var instruments = {};
-	var programs = {};
-	for (var n = 0; n < midi.data.length; n ++) {
-		var event = midi.data[n][0].event;
+	let instruments = {};
+	let programs = {};
+	for (let n = 0; n < midi.data.length; n ++) {
+		let event = midi.data[n][0].event;
 		if (event.type !== 'channel') {
 			continue;
 		}
-		var channel = event.channel;
+		let channel = event.channel;
 		switch(event.subtype) {
 			case 'controller':
 //				console.log(event.channel, MIDI.defineControl[event.controllerType], event.value);
@@ -634,14 +634,14 @@ midi.getFileInstruments = function() {
 				programs[channel] = event.programNumber;
 				break;
 			case 'noteOn':
-				var program = programs[channel];
-				var gm = MIDI.GM.byId[isFinite(program) ? program : channel];
+				let program = programs[channel];
+				let gm = MIDI.GM.byId[isFinite(program) ? program : channel];
 				instruments[gm.id] = true;
 				break;
 		}
 	}
-	var ret = [];
-	for (var key in instruments) {
+	let ret = [];
+	for (let key in instruments) {
 		ret.push(key);
 	}
 	return ret;
@@ -649,14 +649,14 @@ midi.getFileInstruments = function() {
 
 // Playing the audio
 
-var eventQueue = []; // hold events to be triggered
-var queuedTime; //
-var startTime = 0; // to measure time elapse
-var noteRegistrar = {}; // get event for requested note
-var onMidiEvent = undefined; // listener
-var scheduleTracking = function(channel, note, currentTime, offset, message, velocity, time) {
+let eventQueue = []; // hold events to be triggered
+let queuedTime; //
+let startTime = 0; // to measure time elapse
+let noteRegistrar = {}; // get event for requested note
+let onMidiEvent = undefined; // listener
+let scheduleTracking = function(channel, note, currentTime, offset, message, velocity, time) {
 	return setTimeout(function() {
-		var data = {
+		let data = {
 			channel: channel,
 			note: note,
 			now: currentTime,
@@ -685,7 +685,7 @@ var scheduleTracking = function(channel, note, currentTime, offset, message, vel
 	}, currentTime - offset);
 };
 
-var getContext = function() {
+let getContext = function() {
 	if (MIDI.api === 'webaudio') {
 		return MIDI.WebAudio.getContext();
 	} else {
@@ -694,18 +694,18 @@ var getContext = function() {
 	return midi.ctx;
 };
 
-var getLength = function() {
-	var data =  midi.data;
-	var length = data.length;
-	var totalTime = 0.5;
-	for (var n = 0; n < length; n++) {
+let getLength = function() {
+	let data =  midi.data;
+	let length = data.length;
+	let totalTime = 0.5;
+	for (let n = 0; n < length; n++) {
 		totalTime += data[n][1];
 	}
 	return totalTime;
 };
 
-var __now;
-var getNow = function() {
+let __now;
+let getNow = function() {
     if (window.performance && window.performance.now) {
         return window.performance.now();
     } else {
@@ -713,7 +713,7 @@ var getNow = function() {
 	}
 };
 
-var startAudio = function(currentTime, fromCache, onsuccess) {
+let startAudio = function(currentTime, fromCache, onsuccess) {
 	if (!midi.replayer) {
 		return;
 	}
@@ -728,28 +728,28 @@ var startAudio = function(currentTime, fromCache, onsuccess) {
 		midi.endTime = getLength();
 	}
 	///
-	var note;
-	var offset = 0;
-	var messages = 0;
-	var data = midi.data;
-	var ctx = getContext();
-	var length = data.length;
+	let note;
+	let offset = 0;
+	let messages = 0;
+	let data = midi.data;
+	let ctx = getContext();
+	let length = data.length;
 	//
 	queuedTime = 0.5;
 	///
-	var interval = eventQueue[0] && eventQueue[0].interval || 0;
-	var foffset = currentTime - midi.currentTime;
+	let interval = eventQueue[0] && eventQueue[0].interval || 0;
+	let foffset = currentTime - midi.currentTime;
 	///
 	if (MIDI.api !== 'webaudio') { // set currentTime on ctx
-		var now = getNow();
+		let now = getNow();
 		__now = __now || now;
 		ctx.currentTime = (now - __now) / 1000;
 	}
 	///
 	startTime = ctx.currentTime;
 	///
-	for (var n = 0; n < length && messages < 100; n++) {
-		var obj = data[n];
+	for (let n = 0; n < length && messages < 100; n++) {
+		let obj = data[n];
 		if ((queuedTime += obj[1]) <= currentTime) {
 			offset = queuedTime;
 			continue;
@@ -757,15 +757,15 @@ var startAudio = function(currentTime, fromCache, onsuccess) {
 		///
 		currentTime = queuedTime - offset;
 		///
-		var event = obj[0].event;
+		let event = obj[0].event;
 		if (event.type !== 'channel') {
 			continue;
 		}
 		///
-		var channelId = event.channel;
-		var channel = MIDI.channels[channelId];
-		var delay = ctx.currentTime + ((currentTime + foffset + midi.startDelay) / 1000);
-		var queueTime = queuedTime - offset + midi.startDelay;
+		let channelId = event.channel;
+		let channel = MIDI.channels[channelId];
+		let delay = ctx.currentTime + ((currentTime + foffset + midi.startDelay) / 1000);
+		let queueTime = queuedTime - offset + midi.startDelay;
 		switch (event.subtype) {
 			case 'controller':
 				MIDI.setController(channelId, event.controllerType, event.value, delay);
@@ -805,13 +805,13 @@ var startAudio = function(currentTime, fromCache, onsuccess) {
 	onsuccess && onsuccess(eventQueue);
 };
 
-var stopAudio = function() {
-	var ctx = getContext();
+let stopAudio = function() {
+	let ctx = getContext();
 	midi.playing = false;
 	midi.restart += (ctx.currentTime - startTime) * 1000;
 	// stop the audio, and intervals
 	while (eventQueue.length) {
-		var o = eventQueue.pop();
+		let o = eventQueue.pop();
 		window.clearInterval(o.interval);
 		if (!o.source) continue; // is not webaudio
 		if (typeof(o.source) === 'number') {
@@ -821,8 +821,8 @@ var stopAudio = function() {
 		}
 	}
 	// run callback to cancel any notes still playing
-	for (var key in noteRegistrar) {
-		var o = noteRegistrar[key]
+	for (let key in noteRegistrar) {
+		let o = noteRegistrar[key]
 		if (noteRegistrar[key].message === 144 && onMidiEvent) {
 			onMidiEvent({
 				channel: o.channel,
@@ -850,26 +850,26 @@ var stopAudio = function() {
 (function(root) { 'use strict';
 
 	window.Audio && (function() {
-		var midi = root.AudioTag = { api: 'audiotag' };
-		var noteToKey = {};
-		var volume = 127; // floating point
-		var buffer_nid = -1; // current channel
-		var audioBuffers = []; // the audio channels
-		var notesOn = []; // instrumentId + noteId that is currently playing in each 'channel', for routing noteOff/chordOff calls
-		var notes = {}; // the piano keys
-		for (var nid = 0; nid < 12; nid ++) {
+		let midi = root.AudioTag = { api: 'audiotag' };
+		let noteToKey = {};
+		let volume = 127; // floating point
+		let buffer_nid = -1; // current channel
+		let audioBuffers = []; // the audio channels
+		let notesOn = []; // instrumentId + noteId that is currently playing in each 'channel', for routing noteOff/chordOff calls
+		let notes = {}; // the piano keys
+		for (let nid = 0; nid < 12; nid ++) {
 			audioBuffers[nid] = new Audio();
 		}
 
-		var playChannel = function(channel, note) {
+		let playChannel = function(channel, note) {
 			if (!root.channels[channel]) return;
-			var instrument = root.channels[channel].instrument;
-			var instrumentId = root.GM.byId[instrument].id;
-			var note = notes[note];
+			let instrument = root.channels[channel].instrument;
+			let instrumentId = root.GM.byId[instrument].id;
+			let note = notes[note];
 			if (note) {
-				var instrumentNoteId = instrumentId + '' + note.id;
-				var nid = (buffer_nid + 1) % audioBuffers.length;
-				var audio = audioBuffers[nid];
+				let instrumentNoteId = instrumentId + '' + note.id;
+				let nid = (buffer_nid + 1) % audioBuffers.length;
+				let audio = audioBuffers[nid];
 				notesOn[ nid ] = instrumentNoteId;
 				if (!root.Soundfont[instrumentId]) {
 					if (root.DEBUG) {
@@ -884,16 +884,16 @@ var stopAudio = function() {
 			}
 		};
 
-		var stopChannel = function(channel, note) {
+		let stopChannel = function(channel, note) {
 			if (!root.channels[channel]) return;
-			var instrument = root.channels[channel].instrument;
-			var instrumentId = root.GM.byId[instrument].id;
-			var note = notes[note];
+			let instrument = root.channels[channel].instrument;
+			let instrumentId = root.GM.byId[instrument].id;
+			let note = notes[note];
 			if (note) {
-				var instrumentNoteId = instrumentId + '' + note.id;
-				for (var i = 0, len = audioBuffers.length; i < len; i++) {
-				    var nid = (i + buffer_nid + 1) % len;
-				    var cId = notesOn[nid];
+				let instrumentNoteId = instrumentId + '' + note.id;
+				for (let i = 0, len = audioBuffers.length; i < len; i++) {
+				    let nid = (i + buffer_nid + 1) % len;
+				    let cId = notesOn[nid];
 				    if (cId && cId == instrumentNoteId) {
 				        audioBuffers[nid].pause();
 				        notesOn[nid] = null;
@@ -917,7 +917,7 @@ var stopAudio = function() {
 		midi.pitchBend = function(channel, program, delay) { };
 
 		midi.noteOn = function(channel, note, velocity, delay) {
-			var id = noteToKey[note];
+			let id = noteToKey[note];
 			if (!notes[id]) return;
 			if (delay) {
 				return setTimeout(function() {
@@ -929,7 +929,7 @@ var stopAudio = function() {
 		};
 
 		midi.noteOff = function(channel, note, delay) {
-// 			var id = noteToKey[note];
+// 			let id = noteToKey[note];
 // 			if (!notes[id]) return;
 // 			if (delay) {
 // 				return setTimeout(function() {
@@ -941,9 +941,9 @@ var stopAudio = function() {
 		};
 
 		midi.chordOn = function(channel, chord, velocity, delay) {
-			for (var idx = 0; idx < chord.length; idx ++) {
-				var n = chord[idx];
-				var id = noteToKey[n];
+			for (let idx = 0; idx < chord.length; idx ++) {
+				let n = chord[idx];
+				let id = noteToKey[n];
 				if (!notes[id]) continue;
 				if (delay) {
 					return setTimeout(function() {
@@ -956,9 +956,9 @@ var stopAudio = function() {
 		};
 
 		midi.chordOff = function(channel, chord, delay) {
-			for (var idx = 0; idx < chord.length; idx ++) {
-				var n = chord[idx];
-				var id = noteToKey[n];
+			for (let idx = 0; idx < chord.length; idx ++) {
+				let n = chord[idx];
+				let id = noteToKey[n];
 				if (!notes[id]) continue;
 				if (delay) {
 					return setTimeout(function() {
@@ -971,7 +971,7 @@ var stopAudio = function() {
 		};
 
 		midi.stopAllNotes = function() {
-			for (var nid = 0, length = audioBuffers.length; nid < length; nid++) {
+			for (let nid = 0, length = audioBuffers.length; nid < length; nid++) {
 				audioBuffers[nid].pause();
 			}
 		};
@@ -979,7 +979,7 @@ var stopAudio = function() {
 		midi.connect = function(opts) {
 			root.setDefaultPlugin(midi);
 			///
-			for (var key in root.keyToNote) {
+			for (let key in root.keyToNote) {
 				noteToKey[root.keyToNote[key]] = key;
 				notes[key] = {id: key};
 			}
@@ -1000,14 +1000,14 @@ var stopAudio = function() {
 (function(root) { 'use strict';
 
 	window.AudioContext && (function() {
-		var audioContext = null; // new AudioContext();
-		var useStreamingBuffer = false; // !!audioContext.createMediaElementSource;
-		var midi = root.WebAudio = {api: 'webaudio'};
-		var ctx; // audio context
-		var sources = {};
-		var effects = {};
-		var masterVolume = 127;
-		var audioBuffers = {};
+		let audioContext = null; // new AudioContext();
+		let useStreamingBuffer = false; // !!audioContext.createMediaElementSource;
+		let midi = root.WebAudio = {api: 'webaudio'};
+		let ctx; // audio context
+		let sources = {};
+		let effects = {};
+		let masterVolume = 127;
+		let audioBuffers = {};
 		///
 		midi.audioBuffers = audioBuffers;
 		midi.send = function(data, delay) { };
@@ -1026,11 +1026,11 @@ var stopAudio = function() {
 		midi.programChange = function(channelId, program, delay) {
 // 			if (delay) {
 // 				return setTimeout(function() {
-// 					var channel = root.channels[channelId];
+// 					let channel = root.channels[channelId];
 // 					channel.instrument = program;
 // 				}, delay);
 // 			} else {
-				var channel = root.channels[channelId];
+				let channel = root.channels[channelId];
 				channel.instrument = program;
 // 			}
 		};
@@ -1038,11 +1038,11 @@ var stopAudio = function() {
 		midi.pitchBend = function(channelId, program, delay) {
 // 			if (delay) {
 // 				setTimeout(function() {
-// 					var channel = root.channels[channelId];
+// 					let channel = root.channels[channelId];
 // 					channel.pitchBend = program;
 // 				}, delay);
 // 			} else {
-				var channel = root.channels[channelId];
+				let channel = root.channels[channelId];
 				channel.pitchBend = program;
 // 			}
 		};
@@ -1051,10 +1051,10 @@ var stopAudio = function() {
 			delay = delay || 0;
 
 			/// check whether the note exists
-			var channel = root.channels[channelId];
-			var instrument = channel.instrument;
-			var bufferId = instrument + '' + noteId;
-			var buffer = audioBuffers[bufferId];
+			let channel = root.channels[channelId];
+			let instrument = channel.instrument;
+			let bufferId = instrument + '' + noteId;
+			let buffer = audioBuffers[bufferId];
 			if (!buffer) {
 // 				console.log(MIDI.GM.byId[instrument].id, instrument, channelId);
 				return;
@@ -1067,23 +1067,23 @@ var stopAudio = function() {
 
 			/// create audio buffer
 			if (useStreamingBuffer) {
-				var source = ctx.createMediaElementSource(buffer);
+				let source = ctx.createMediaElementSource(buffer);
 			} else { // XMLHTTP buffer
-				var source = ctx.createBufferSource();
+				let source = ctx.createBufferSource();
 				source.buffer = buffer;
 			}
 
 			/// add effects to buffer
 			if (effects) {
-				var chain = source;
-				for (var key in effects) {
+				let chain = source;
+				for (let key in effects) {
 					chain.connect(effects[key].input);
 					chain = effects[key];
 				}
 			}
 
 			/// add gain + pitchShift
-			var gain = (velocity / 127) * (masterVolume / 127) * 2 - 1;
+			let gain = (velocity / 127) * (masterVolume / 127) * 2 - 1;
 			source.connect(ctx.destination);
 			source.playbackRate.value = 1; // pitch shift
 			source.gainNode = ctx.createGain(); // gain
@@ -1114,22 +1114,22 @@ var stopAudio = function() {
 			delay = delay || 0;
 
 			/// check whether the note exists
-			var channel = root.channels[channelId];
-			var instrument = channel.instrument;
-			var bufferId = instrument + '' + noteId;
-			var buffer = audioBuffers[bufferId];
+			let channel = root.channels[channelId];
+			let instrument = channel.instrument;
+			let bufferId = instrument + '' + noteId;
+			let buffer = audioBuffers[bufferId];
 			if (buffer) {
 				if (delay < ctx.currentTime) {
 					delay += ctx.currentTime;
 				}
 				///
-				var source = sources[channelId + '' + noteId];
+				let source = sources[channelId + '' + noteId];
 				if (source) {
 					if (source.gainNode) {
 						// @Miranet: 'the values of 0.2 and 0.3 could of course be used as
 						// a 'release' parameter for ADSR like time settings.'
 						// add { 'metadata': { release: 0.3 } } to soundfont files
-						var gain = source.gainNode.gain;
+						let gain = source.gainNode.gain;
 						gain.linearRampToValueAtTime(gain.value, delay);
 						gain.linearRampToValueAtTime(-1.0, delay + 0.3);
 					}
@@ -1158,28 +1158,28 @@ var stopAudio = function() {
 		};
 
 		midi.chordOn = function(channel, chord, velocity, delay) {
-			var res = {};
-			for (var n = 0, note, len = chord.length; n < len; n++) {
+			let res = {};
+			for (let n = 0, note, len = chord.length; n < len; n++) {
 				res[note = chord[n]] = midi.noteOn(channel, note, velocity, delay);
 			}
 			return res;
 		};
 
 		midi.chordOff = function(channel, chord, delay) {
-			var res = {};
-			for (var n = 0, note, len = chord.length; n < len; n++) {
+			let res = {};
+			for (let n = 0, note, len = chord.length; n < len; n++) {
 				res[note = chord[n]] = midi.noteOff(channel, note, delay);
 			}
 			return res;
 		};
 
 		midi.stopAllNotes = function() {
-			for (var sid in sources) {
-				var delay = 0;
+			for (let sid in sources) {
+				let delay = 0;
 				if (delay < ctx.currentTime) {
 					delay += ctx.currentTime;
 				}
-				var source = sources[sid];
+				let source = sources[sid];
 				source.gain.linearRampToValueAtTime(1, delay);
 				source.gain.linearRampToValueAtTime(0, delay + 0.3);
 				if (source.noteOff) { // old api
@@ -1193,9 +1193,9 @@ var stopAudio = function() {
 
 		midi.setEffects = function(list) {
 			if (ctx.tunajs) {
-				for (var n = 0; n < list.length; n ++) {
-					var data = list[n];
-					var effect = new ctx.tunajs[data.type](data);
+				for (let n = 0; n < list.length; n ++) {
+					let data = list[n];
+					let effect = new ctx.tunajs[data.type](data);
 					effect.connect(ctx.destination);
 					effects[data.type] = effect;
 				}
@@ -1222,12 +1222,12 @@ var stopAudio = function() {
 			}
 
 			/// loading audio files
-			var urls = [];
-			var notes = root.keyToNote;
-			for (var key in notes) urls.push(key);
+			let urls = [];
+			let notes = root.keyToNote;
+			for (let key in notes) urls.push(key);
 			///
-			var waitForEnd = function(instrument) {
-				for (var key in bufferPending) { // has pending items
+			let waitForEnd = function(instrument) {
+				for (let key in bufferPending) { // has pending items
 					if (bufferPending[key]) return;
 				}
 				///
@@ -1237,17 +1237,17 @@ var stopAudio = function() {
 				}
 			};
 			///
-			var requestAudio = function(soundfont, instrumentId, index, key) {
-				var url = soundfont[key];
+			let requestAudio = function(soundfont, instrumentId, index, key) {
+				let url = soundfont[key];
 				if (url) {
 					bufferPending[instrumentId] ++;
 					loadAudio(url, function(buffer) {
 						buffer.id = key;
-						var noteId = root.keyToNote[key];
+						let noteId = root.keyToNote[key];
 						audioBuffers[instrumentId + '' + noteId] = buffer;
 						///
 						if (-- bufferPending[instrumentId] === 0) {
-							var percent = index / 87;
+							let percent = index / 87;
 // 							console.log(MIDI.GM.byId[instrumentId], 'processing: ', percent);
 							soundfont.isLoaded = true;
 							waitForEnd(instrument);
@@ -1258,20 +1258,20 @@ var stopAudio = function() {
 				}
 			};
 			///
-			var bufferPending = {};
-			for (var instrument in root.Soundfont) {
-				var soundfont = root.Soundfont[instrument];
+			let bufferPending = {};
+			for (let instrument in root.Soundfont) {
+				let soundfont = root.Soundfont[instrument];
 				if (soundfont.isLoaded) {
 					continue;
 				}
 				///
-				var synth = root.GM.byName[instrument];
-				var instrumentId = synth.number;
+				let synth = root.GM.byName[instrument];
+				let instrumentId = synth.number;
 				///
 				bufferPending[instrumentId] = 0;
 				///
-				for (var index = 0; index < urls.length; index++) {
-					var key = urls[index];
+				for (let index = 0; index < urls.length; index++) {
+					let key = urls[index];
 					requestAudio(soundfont, instrumentId, index, key);
 				}
 			}
@@ -1283,7 +1283,7 @@ var stopAudio = function() {
 		---------------------------------------------------------------------- */
 		function loadAudio(url, onload, onerror) {
 			if (useStreamingBuffer) {
-				var audio = new Audio();
+				let audio = new Audio();
 				audio.src = url;
 				audio.controls = false;
 				audio.autoplay = false;
@@ -1296,11 +1296,11 @@ var stopAudio = function() {
 				});
 				document.body.appendChild(audio);
 			} else if (url.indexOf('data:audio') === 0) { // Base64 string
-				var base64 = url.split(',')[1];
-				var buffer = Base64Binary.decodeArrayBuffer(base64);
+				let base64 = url.split(',')[1];
+				let buffer = Base64Binary.decodeArrayBuffer(base64);
 				ctx.decodeAudioData(buffer, onload, onerror);
 			} else { // XMLHTTP buffer
-				var request = new XMLHttpRequest();
+				let request = new XMLHttpRequest();
 				request.open('GET', url, true);
 				request.responseType = 'arraybuffer';
 				request.onload = function() {
@@ -1325,10 +1325,10 @@ var stopAudio = function() {
 
 (function(root) { 'use strict';
 
-	var plugin = null;
-	var output = null;
-	var channels = [];
-	var midi = root.WebMIDI = {api: 'webmidi'};
+	let plugin = null;
+	let output = null;
+	let channels = [];
+	let midi = root.WebMIDI = {api: 'webmidi'};
 	midi.send = function(data, delay) { // set channel volume
 		output.send(data, delay * 1000);
 	};
@@ -1358,29 +1358,29 @@ var stopAudio = function() {
 	};
 
 	midi.chordOn = function(channel, chord, velocity, delay) {
-		for (var n = 0; n < chord.length; n ++) {
-			var note = chord[n];
+		for (let n = 0; n < chord.length; n ++) {
+			let note = chord[n];
 			output.send([0x90 + channel, note, velocity], delay * 1000);
 		}
 	};
 
 	midi.chordOff = function(channel, chord, delay) {
-		for (var n = 0; n < chord.length; n ++) {
-			var note = chord[n];
+		for (let n = 0; n < chord.length; n ++) {
+			let note = chord[n];
 			output.send([0x80 + channel, note, 0], delay * 1000);
 		}
 	};
 
 	midi.stopAllNotes = function() {
 		output.cancel();
-		for (var channel = 0; channel < 16; channel ++) {
+		for (let channel = 0; channel < 16; channel ++) {
 			output.send([0xB0 + channel, 0x7B, 0]);
 		}
 	};
 
 	midi.connect = function(opts) {
 		root.setDefaultPlugin(midi);
-		var errFunction = function(err) { // well at least we tried!
+		let errFunction = function(err) { // well at least we tried!
 			if (window.AudioContext) { // Chrome
 				opts.api = 'webaudio';
 			} else if (window.Audio) { // Firefox
@@ -1393,7 +1393,7 @@ var stopAudio = function() {
 		///
 		navigator.requestMIDIAccess().then(function(access) {
 			plugin = access;
-			var pluginOutputs = plugin.outputs;
+			let pluginOutputs = plugin.outputs;
 			if (typeof pluginOutputs == 'function') { // Chrome pre-43
 			  output = pluginOutputs()[0];
 			} else { // Chrome post-43
@@ -1437,22 +1437,22 @@ if (typeof MIDI === 'undefined') MIDI = {};
 
 (function(root) {
 
-	var util = root.util || (root.util = {});
+	let util = root.util || (root.util = {});
 
 	util.request = function(opts, onsuccess, onerror, onprogress) { 'use strict';
 		if (typeof opts === 'string') opts = {url: opts};
 		///
-		var data = opts.data;
-		var url = opts.url;
-		var method = opts.method || (opts.data ? 'POST' : 'GET');
-		var format = opts.format;
-		var headers = opts.headers;
-		var responseType = opts.responseType;
-		var withCredentials = opts.withCredentials || false;
+		let data = opts.data;
+		let url = opts.url;
+		let method = opts.method || (opts.data ? 'POST' : 'GET');
+		let format = opts.format;
+		let headers = opts.headers;
+		let responseType = opts.responseType;
+		let withCredentials = opts.withCredentials || false;
 		///
-		var onsuccess = onsuccess || opts.onsuccess;
-		var onerror = onerror || opts.onerror;
-		var onprogress = onprogress || opts.onprogress;
+		let onsuccess = onsuccess || opts.onsuccess;
+		let onerror = onerror || opts.onerror;
+		let onprogress = onprogress || opts.onprogress;
 		///
 		if (typeof NodeFS !== 'undefined' && root.loc.isLocalUrl(url)) {
 			NodeFS.readFile(url, 'utf8', function(err, res) {
@@ -1465,11 +1465,11 @@ if (typeof MIDI === 'undefined') MIDI = {};
 			return;
 		}
 		///
-		var xhr = new XMLHttpRequest();
+		let xhr = new XMLHttpRequest();
 		xhr.open(method, url, true);
 		///
 		if (headers) {
-			for (var type in headers) {
+			for (let type in headers) {
 				xhr.setRequestHeader(type, headers[type]);
 			}
 		} else if (data) { // set the default headers for POST
@@ -1496,13 +1496,13 @@ if (typeof MIDI === 'undefined') MIDI = {};
 				};
 			} else {
 				xhr.addEventListener('progress', function(evt) {
-					var totalBytes = 0;
+					let totalBytes = 0;
 					if (evt.lengthComputable) {
 						totalBytes = evt.total;
 					} else if (xhr.totalBytes) {
 						totalBytes = xhr.totalBytes;
 					} else {
-						var rawBytes = parseInt(xhr.getResponseHeader('Content-Length-Raw'));
+						let rawBytes = parseInt(xhr.getResponseHeader('Content-Length-Raw'));
 						if (isFinite(rawBytes)) {
 							xhr.totalBytes = totalBytes = rawBytes;
 						} else {
@@ -1522,7 +1522,7 @@ if (typeof MIDI === 'undefined') MIDI = {};
 					xhr.status === 0 && root.client.cordova // Cordova quirk
 				) {
 					if (onsuccess) {
-						var res;
+						let res;
 						if (format === 'xml') {
 							res = evt.target.responseXML;
 						} else if (format === 'text') {
@@ -1548,7 +1548,7 @@ if (typeof MIDI === 'undefined') MIDI = {};
 
 	/// NodeJS
 	if (typeof module !== 'undefined' && module.exports) {
-		var NodeFS = require('fs');
+		let NodeFS = require('fs');
 		XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 		module.exports = root.util.request;
 	}
@@ -1595,7 +1595,7 @@ if (typeof MIDI === 'undefined') MIDI = {};
 	});
 */
 
-if (typeof(dom) === "undefined") var dom = {};
+if (typeof(dom) === "undefined") let dom = {};
 
 (function() { "use strict";
 
@@ -1606,11 +1606,11 @@ dom.loadScript = function() {
 };
 
 dom.loadScript.prototype.add = function(config) {
-	var that = this;
+	let that = this;
 	if (typeof(config) === "string") {
 		config = { url: config };
 	}
-	var urls = config.urls;
+	let urls = config.urls;
 	if (typeof(urls) === "undefined") {
 		urls = [{
 			url: config.url,
@@ -1618,9 +1618,9 @@ dom.loadScript.prototype.add = function(config) {
 		}];
 	}
 	/// adding the elements to the head
-	var doc = document.getElementsByTagName("head")[0];
+	let doc = document.getElementsByTagName("head")[0];
 	///
-	var testElement = function(element, test) {
+	let testElement = function(element, test) {
 		if (that.loaded[element.url]) return;
 		if (test && globalExists(test) === false) return;
 		that.loaded[element.url] = true;
@@ -1632,9 +1632,9 @@ dom.loadScript.prototype.add = function(config) {
 		if (typeof(getNext) !== "undefined") getNext();
 	};
 	///
-	var hasError = false;
-	var batchTest = [];
-	var addElement = function(element) {
+	let hasError = false;
+	let batchTest = [];
+	let addElement = function(element) {
 		if (typeof(element) === "string") {
 			element = {
 				url: element,
@@ -1642,9 +1642,9 @@ dom.loadScript.prototype.add = function(config) {
 			};
 		}
 		if (/([\w\d.\[\]\'\"])$/.test(element.verify)) { // check whether its a variable reference
-			var verify = element.test = element.verify;
+			let verify = element.test = element.verify;
 			if (typeof(verify) === "object") {
-				for (var n = 0; n < verify.length; n ++) {
+				for (let n = 0; n < verify.length; n ++) {
 					batchTest.push(verify[n]);
 				}
 			} else {
@@ -1652,7 +1652,7 @@ dom.loadScript.prototype.add = function(config) {
 			}
 		}
 		if (that.loaded[element.url]) return;
-		var script = document.createElement("script");
+		let script = document.createElement("script");
 		script.onreadystatechange = function() {
 			if (this.readyState !== "loaded" && this.readyState !== "complete") return;
 			testElement(element);
@@ -1664,7 +1664,7 @@ dom.loadScript.prototype.add = function(config) {
 			hasError = true;
 			delete that.loading[element.url];
 			if (typeof(element.test) === "object") {
-				for (var key in element.test) {
+				for (let key in element.test) {
 					removeTest(element.test[key]);
 				}
 			} else {
@@ -1677,24 +1677,24 @@ dom.loadScript.prototype.add = function(config) {
 		that.loading[element.url] = function() {};
 	};
 	/// checking to see whether everything loaded properly
-	var removeTest = function(test) {
-		var ret = [];
-		for (var n = 0; n < batchTest.length; n ++) {
+	let removeTest = function(test) {
+		let ret = [];
+		for (let n = 0; n < batchTest.length; n ++) {
 			if (batchTest[n] === test) continue;
 			ret.push(batchTest[n]);
 		}
 		batchTest = ret;
 	};
-	var onLoad = function(element) {
+	let onLoad = function(element) {
 		if (element) {
 			testElement(element, element.test);
 		} else {
-			for (var n = 0; n < urls.length; n ++) {
+			for (let n = 0; n < urls.length; n ++) {
 				testElement(urls[n], urls[n].test);
 			}
 		}
-		var istrue = true;
-		for (var n = 0; n < batchTest.length; n ++) {
+		let istrue = true;
+		for (let n = 0; n < batchTest.length; n ++) {
 			if (globalExists(batchTest[n]) === false) {
 				istrue = false;
 			}
@@ -1715,8 +1715,8 @@ dom.loadScript.prototype.add = function(config) {
 	};
 	/// loading methods;  strict ordering or loose ordering
 	if (config.strictOrder) {
-		var ID = -1;
-		var getNext = function() {
+		let ID = -1;
+		let getNext = function() {
 			ID ++;
 			if (!urls[ID]) { // all elements are loaded
 				if (hasError) {
@@ -1727,8 +1727,8 @@ dom.loadScript.prototype.add = function(config) {
 					config.onsuccess();
 				}
 			} else { // loading new script
-				var element = urls[ID];
-				var url = element.url;
+				let element = urls[ID];
+				let url = element.url;
 				if (that.loading[url]) { // already loading from another call (attach to event)
 					that.loading[url] = function() {
 						if (element.onsuccess) element.onsuccess();
@@ -1744,7 +1744,7 @@ dom.loadScript.prototype.add = function(config) {
 		};
 		getNext();
 	} else { // loose ordering
-		for (var ID = 0; ID < urls.length; ID ++) {
+		for (let ID = 0; ID < urls.length; ID ++) {
 			addElement(urls[ID]);
 			onLoad(urls[ID]);
 		}
@@ -1753,14 +1753,14 @@ dom.loadScript.prototype.add = function(config) {
 
 dom.loadScript = new dom.loadScript();
 
-var globalExists = function(path, root) {
+let globalExists = function(path, root) {
 	try {
 		path = path.split('"').join('').split("'").join('').split(']').join('').split('[').join('.');
-		var parts = path.split(".");
-		var length = parts.length;
-		var object = root || window;
-		for (var n = 0; n < length; n ++) {
-			var key = parts[n];
+		let parts = path.split(".");
+		let length = parts.length;
+		let object = root || window;
+		for (let n = 0; n < length; n ++) {
+			let key = parts[n];
 			if (object[key] == null) {
 				return false;
 			} else { //
